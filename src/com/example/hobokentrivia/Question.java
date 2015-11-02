@@ -30,7 +30,7 @@ public class Question extends Activity {
         }
         switch(message){
         
-        case "Random":
+        case "No Time Limit":
          question = "Hoboken is the birthplace of what sport?";   	
         	break;
         
@@ -39,6 +39,12 @@ public class Question extends Activity {
         TextView tv=(TextView)findViewById(R.id.textView2);
         tv.setText(question);
         	
+    }
+    
+    public void onHome(View view){
+    	startActivity(new Intent(Question.this, Home.class));
+    //	onCreate(new Bundle());
+    //	setContentView(R.layout.home);
     }
     
     public void result(View view) {

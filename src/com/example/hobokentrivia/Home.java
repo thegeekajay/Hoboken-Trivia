@@ -38,6 +38,10 @@ public class Home extends Activity {
 	    });
 	 }
 	    
+	    public void onHome(View view){
+	    	//setContentView(R.layout.home);
+	    }
+	    
 	    public void display(View view) {
 	    //	System.out.println("in display question method");
 	    //	 Toast.makeText(Home.this,radioButton.getText(),Toast.LENGTH_SHORT).show();

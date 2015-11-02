@@ -9,22 +9,25 @@
     tools:context="com.example.hobokentrivia.Home" >
 
       
-      <TextView
+        
+       <ImageButton
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      android:id="@+id/imageButton"
+      android:background="@drawable/home"
+      android:onClick="onHome"
+      android:layout_alignParentTop="true"  />
+       
+           <TextView
          android:id="@+id/textView1"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:text="Please select a category"
+         android:text="Please select a difficulty level"
          android:textColor="#009688"
-         android:textSize="30dp"
+         android:textSize="20dp"
          android:layout_centerHorizontal="true"
+         android:layout_below="@+id/imageButton"
          android:layout_marginBottom="40dp" />
-      
-<!--        <ImageButton
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:id="@+id/imageButton"
-      android:src="@drawable/home"
-      android:layout_alignParentTop="true"  /> -->
 
       
       <RadioGroup
@@ -38,7 +41,7 @@
    <RadioButton
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Random"
+      android:text="No Time Limit"
       android:id="@+id/radioButton"
       android:layout_gravity="center_horizontal"
       android:checked="true"
@@ -47,76 +50,14 @@
    <RadioButton
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="History"
+      android:text="Time Limit"
       android:id="@+id/radioButton2"
       android:layout_gravity="center_horizontal"
       android:checked="false"
       android:textSize="15dp"
       android:layout_weight="0.13" />
    
-     <RadioButton
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Nightlife"
-      android:id="@+id/radioButton3"
-      android:layout_gravity="center_horizontal"
-      android:checked="false"
-      android:textSize="15dp"
-      android:layout_weight="0.13" />
      
-       <RadioButton
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Food"
-      android:id="@+id/radioButton4"
-      android:layout_gravity="center_horizontal"
-      android:checked="false"
-      android:textSize="15dp"
-      android:layout_weight="0.13" />
-       
-       
-         <RadioButton
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Sports"
-      android:id="@+id/radioButton5"
-      android:layout_gravity="center_horizontal"
-      android:checked="false"
-      android:textSize="15dp"
-      android:layout_weight="0.13" />
-         
-        <RadioButton
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Stevens"
-      android:id="@+id/radioButton6"
-      android:layout_gravity="center_horizontal"
-      android:checked="false"
-      android:textSize="15dp"
-      android:layout_weight="0.13" />
-        
-        
-        <RadioButton
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Culture"
-      android:id="@+id/radioButton7"
-      android:layout_gravity="center_horizontal"
-      android:checked="false"
-      android:textSize="15dp"
-      android:layout_weight="0.13" />
-        
-      
-         <RadioButton
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Famous People"
-      android:id="@+id/radioButton8"
-      android:layout_gravity="center_horizontal"
-      android:checked="false"
-      android:textSize="15dp"
-      android:layout_weight="0.13" />
-
 </RadioGroup>
 
     <Button
