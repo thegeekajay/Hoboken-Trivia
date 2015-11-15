@@ -45,7 +45,7 @@ public class Home extends Activity {
 	    public void display(View view) {
 	    //	System.out.println("in display question method");
 	    //	 Toast.makeText(Home.this,radioButton.getText(),Toast.LENGTH_SHORT).show();
-	    	Intent i = new Intent(Home.this, Question.class);
+	    	Intent i = new Intent(Home.this, QuestionActivity.class);
 	    	i.putExtra("radio_chosen", radioButton.getText().toString());
 	    	startActivity(i);
 	    }

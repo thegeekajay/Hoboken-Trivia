@@ -2,35 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/entrance_0"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.hobokentrivia.MainActivity" >
-
-      
-      <TextView
-         android:id="@+id/textView1"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="Hoboken Trivia Game "
-         android:textColor="#000000"
-         android:textSize="30dp"
-         android:layout_centerHorizontal="true"
-         android:layout_marginBottom="40dp"
-         android:layout_marginTop="100dp" />
+    tools:context="com.example.hobokentriviapp.MainActivity" >
 
     <Button
+        android:id="@+id/New_Game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button1"
-        android:text="PLAY"
-        android:onClick="startGame"
-        android:background="#03A9F4"
-		android:textColor="#FFFFFF"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true" />
-
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="53dp"
+        android:background="#CC3300"
+        android:fontFamily="sans-serif-medium"
+   		android:text="@string/New_Game"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:width="200dp" />
 
 </RelativeLayout>

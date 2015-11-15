@@ -28,9 +28,17 @@
           android:label="@string/app_name" >
           </activity>
           <activity
-          android:name=".Question"
+          android:name=".QuestionActivity"
           android:label="@string/app_name" >
-          </activity>
+           </activity>
+           <activity
+          android:name=".Choose_Difficulty"
+          android:label="@string/app_name" >
+           </activity>
+              <activity
+          android:name=".ScoreActivity"
+          android:label="@string/app_name" >
+           </activity>
     </application>
 
 </manifest>
