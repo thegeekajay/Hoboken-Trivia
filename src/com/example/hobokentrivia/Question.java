@@ -1,3 +1,4 @@
+
 package com.example.hobokentrivia;
 
 import android.content.Intent;
@@ -36,31 +37,4 @@ public class Question {
 		return s;
 	}
 	
-	
-	
-//	public String getOPTA() {
-//		return OPTA;
-//	}
-//	public String getOPTB() {
-//		return OPTB;
-//	}
-//	public String getOPTC() {
-//		return OPTC;
-//	}
-//	public String getANSWER() {
-//		return ANSWER;
-//	}
-//	public void setOPTA(String oPTA) {
-//		OPTA = oPTA;
-//	}
-//	public void setOPTB(String oPTB) {
-//		OPTB = oPTB;
-//	}
-//	public void setOPTC(String oPTC) {
-//		OPTC = oPTC;
-//	}
-//	public void setANSWER(String aNSWER) {
-//		ANSWER = aNSWER;
-//	}
-	
- }
+}

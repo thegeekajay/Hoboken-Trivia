@@ -1,3 +1,4 @@
+
 package com.example.hobokentrivia;
 
 public class Answer {
@@ -33,6 +34,4 @@ public class Answer {
 	public void setCorrect(boolean isCorrect) {
 		this.isCorrect = isCorrect;
 	}
-
-
 }

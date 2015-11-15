@@ -1,6 +1,6 @@
 package com.example.hobokentrivia;
 
-	import java.io.BufferedInputStream;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.File;
@@ -25,6 +25,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -55,13 +56,16 @@ import com.example.hobokentrivia.DBHelper;
 		private int[] index;
 		private boolean skipped;
 		private CountDownTimer time;
+		private int ID;
 		private int coins;
+		private int score_total;
 		Map<Integer, Question> QsSet = new HashMap<Integer, Question>();
 		Map<Integer, Answer[]> AnsSet=new HashMap<Integer, Answer[]>();
 		List<Integer> Index=new ArrayList<Integer>();
 		DBHelper db;
 		private BufferedReader reader;
 		private String message;
+		private int game_id;
 
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +83,7 @@ import com.example.hobokentrivia.DBHelper;
 			}						
 			
 			db=new DBHelper(this, reader);
-			
+	
 		//	btnDisplay=(Button)findViewById(R.id.button1);
 			textView1=(TextView)findViewById(R.id.textView1);
 			tv=(TextView)findViewById(R.id.textView2);
@@ -96,7 +100,21 @@ import com.example.hobokentrivia.DBHelper;
 			Bundle extras = getIntent().getExtras();
 			 if (extras != null) {
 	             message= extras.getString("radio_chosen");
+	             if(extras.containsKey("id")){
+	            	 ID = extras.getInt("id");
+	             }
+	             if(extras.containsKey("game_id")){
+	            	 game_id = extras.getInt("game_id");
+	             }
 	        }
+	//		 if(ID == 0){
+				 ID = db.startTracking(); //start tracking user 
+	//		 }
+	//		 else{
+	//			 db.addNewGame(ID, game_id + 1);
+	//		 }
+			 
+			 Log.d("userid", String.valueOf(ID));
 			switch(message){
 			case "No Time Limit":
 				timer = false;
@@ -281,16 +299,20 @@ import com.example.hobokentrivia.DBHelper;
 
 			//calculate score
 			coins = ncorrect - nwrong;
+			score_total = ncorrect;
 			if(coins < 0){
 				coins = 0;
 			}
 			
 			Intent i = new Intent(QuestionActivity.this, ScoreActivity.class);
-			//pass coins 
+			//pass coins and user id
 			Log.d("coins", String.valueOf(coins));
 	    	i.putExtra("coins", coins);
+	    	i.putExtra("score", score_total);
+	    	i.putExtra("id", ID);
 	    	startActivity(i);
 	    	finish();
 
 		}
 	}
+

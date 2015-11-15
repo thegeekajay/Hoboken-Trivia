@@ -48,10 +48,7 @@
          android:layout_below="@+id/textView1"
          android:textSize="15sp"
          android:layout_marginBottom="40dp" />
-            
-
-      
-
+                
      <LinearLayout
          android:id="@+id/LinearLayout1"
          android:layout_width="fill_parent"
@@ -92,6 +89,7 @@
      android:onClick="result"
      android:text="Choice 4"     
      android:textColor="#FFFFFF" />
+
 
  <Button
      android:id="@+id/button3"
@@ -144,7 +142,6 @@
      android:background="#03A9F4"
      android:onClick="score"
      android:text="View Score"
-     android:textSize="30dp"
      android:textColor="#FFFFFF" />
 
 </RelativeLayout>

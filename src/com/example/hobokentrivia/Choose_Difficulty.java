@@ -16,11 +16,24 @@ import android.widget.Toast;
 		  private RadioGroup radioCatGroup;
 		  private RadioButton radioButton;
 		  private Button btnDisplay;
+		  private int id = 0;
+		  private int game_id = 0;
 		  
 		    @Override
 		    protected void onCreate(Bundle savedInstanceState) {
 		        super.onCreate(savedInstanceState);
 		        setContentView(R.layout.choose_difficulty);
+		        Bundle extras = getIntent().getExtras();
+		        if(extras != null){
+		        	if(extras.containsKey("id")){
+		        		id = extras.getInt("id");
+		        	}
+		        	if(extras.containsKey("game_id")){
+		        		game_id = extras.getInt("game_id");
+		        	}
+		        }
+		        
+		        
 		        radioCatGroup=(RadioGroup)findViewById(R.id.radioGroup);
 		        
 		        btnDisplay=(Button)findViewById(R.id.button1);
@@ -42,9 +55,13 @@ import android.widget.Toast;
 		    
 		    public void display(View view) {
 		    	//System.out.println("in display question method");
-		    	 Toast.makeText(Choose_Difficulty.this,radioButton.getText(),Toast.LENGTH_SHORT).show();
+		    	// Toast.makeText(Choose_Difficulty.this,radioButton.getText(),Toast.LENGTH_SHORT).show();
 		    	Intent i = new Intent(Choose_Difficulty.this, QuestionActivity.class);
 		    	i.putExtra("radio_chosen", radioButton.getText().toString());
+		    	if(id > 0 && game_id > 0 ){
+		    		i.putExtra("id", id);
+		    		i.putExtra("game_id", game_id);
+		    	}
 		    	startActivity(i);
 		    	finish();
 		    }

@@ -6,10 +6,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -23,11 +29,12 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper{
 	
-	private static final int DATABASE_VERSION = 10;
+	private static final int DATABASE_VERSION = 14;
 	// Database Name
 	private static final String DATABASE_NAME = "Hoboken_Trivia";
 	// tasks table name
 	private static final String TABLE_QUESTION = "Question";
+	private static final String TABLE_TRACK_USER = "Track_User";
 	// tasks Table Columns names
 	private static final String KEY_ID = "ID";
 	private static final String KEY_QUESTION = "QUESTION";
@@ -36,6 +43,13 @@ public class DBHelper extends SQLiteOpenHelper{
 	private static final String KEY_OPTB= "OPTB"; //option b
 	private static final String KEY_OPTC= "OPTC"; //option c
 	private static final String KEY_OPTD= "OPTD"; //option d
+	private static final String KEY_USERID = "USERID";
+	private static final String KEY_SCORE = "SCORE";
+	private static final String KEY_COINS = "COINS";
+	private static final String KEY_GAME_NUM = "GAME_NUMBER";
+	private static final String KEY_TIME_IN = "TIME_IN";
+	private static final String KEY_TIME_OUT = "TIME_OUT";
+	private static final String KEY_TOTAL_TIME = "TOTAL_TIME";
 	private SQLiteDatabase dbase;
 	private Scanner file;
 	private String Line;
@@ -61,18 +75,120 @@ public class DBHelper extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
 		dbase = db;
-		String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_QUESTION + "("
+		String questions = "CREATE TABLE IF NOT EXISTS " + TABLE_QUESTION + "("
 		+ KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_QUESTION
 		+ " TEXT, " + KEY_ANSWER + " TEXT, " + KEY_OPTA +" TEXT, "
 		+KEY_OPTB + " TEXT, " + KEY_OPTC + " TEXT, " + KEY_OPTD + " TEXT)";
-		dbase.execSQL(sql);
+		
+		String user = "CREATE TABLE IF NOT EXISTS " + TABLE_TRACK_USER + "("
+				+ KEY_USERID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_SCORE
+				+ " INTEGER, " + KEY_COINS + " INTEGER, " + KEY_GAME_NUM + " INTEGER, " 
+				+ KEY_TIME_IN +" DATETIME, "+KEY_TIME_OUT + " DATETIME, " + KEY_TOTAL_TIME + " TIME, " + 
+				"UNIQUE (" + KEY_USERID + ", " + KEY_GAME_NUM + "))";
+		dbase.execSQL(questions);
+		dbase.execSQL(user);
 		try {
 			loadQuestions(reader);
+			//startTracking();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void addNewGame(int id, int gameid){
+		dbase = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		  SimpleDateFormat dateFormat = new SimpleDateFormat(
+	                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+	        Date date = new Date();
+	        values.put(KEY_USERID, id);
+	        values.put(KEY_GAME_NUM, gameid);
+	        values.put(KEY_SCORE, 0);
+	        values.put(KEY_COINS, 0);
+	    	values.put(KEY_TIME_IN, dateFormat.format(date)); //time in is current time
+	     
+	    	dbase.insert(TABLE_TRACK_USER, null, values);
+	}
+	
+	public int startTracking(){
+		dbase = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        //dateFormat.format(date);
+		
+		values.put(KEY_SCORE, 0);
+		values.put(KEY_COINS, 0);
+		values.put(KEY_GAME_NUM, 1);
+		values.put(KEY_TIME_IN, dateFormat.format(date)); //time in is current time
+		Log.d("values", values.toString());
+		
+		dbase.insert(TABLE_TRACK_USER, null, values);
+		String selectQuery = "SELECT MAX(USERID) FROM " + TABLE_TRACK_USER;
+		Cursor cursor = dbase.rawQuery(selectQuery, null);
+	//	Log.d("cursor for id", cursor.getString(0));
+		cursor.moveToFirst();
+		int id = cursor.getInt(0);
+		cursor.close();
+		return id;	
+		
+	}
+	
+	public void updateTracking(TrackUser user){
+		dbase = this.getWritableDatabase();
+		Log.d("in update tracking id", String.valueOf(user.getId()));
+		Log.d("updated coins", String.valueOf(user.getCoins()));
+		ContentValues values = new ContentValues();
+		values.put(KEY_GAME_NUM, user.getGameNum());
+		values.put(KEY_SCORE, user.getScore());
+		values.put(KEY_COINS, user.getCoins());
+		values.put(KEY_TIME_IN, user.getTime_in().toString());
+		values.put(KEY_TIME_OUT, user.getTime_out().toString());
+		values.put(KEY_TOTAL_TIME, user.getTotal_time().toString());
+		String whereClause = " USERID = " + user.getId() + " AND GAME_NUMBER = " + user.getGameNum();
+		dbase.update(TABLE_TRACK_USER, values, whereClause, null);
+
+	}
+	
+	public List<TrackUser> getTracking(int userid) throws ParseException {
+		List<TrackUser> user = new ArrayList<TrackUser>();
+		dbase = this.getReadableDatabase();
+		
+		  SimpleDateFormat dateFormat = new SimpleDateFormat(
+	                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+	        Date date = new Date();
+		Log.d("before select id", String.valueOf(userid));
+		String selectQuery = "SELECT * FROM " + TABLE_TRACK_USER + " WHERE USERID = " + userid;
+		
+		Cursor cursor = dbase.rawQuery(selectQuery, null);
+		// looping through all rows and adding to list
+		if (cursor.moveToFirst()) {
+			do
+					{
+						TrackUser usr = new TrackUser();
+						usr.setId(userid);
+						usr.setGameNum(cursor.getInt(cursor.getColumnIndex(DBHelper.KEY_GAME_NUM)));
+						usr.setCoins(cursor.getInt(cursor.getColumnIndex(DBHelper.KEY_COINS)));
+						usr.setScore(cursor.getInt(cursor.getColumnIndex(DBHelper.KEY_SCORE)));
+						Date time_in = dateFormat.parse(cursor.getString(cursor.getColumnIndex(DBHelper.KEY_TIME_IN)));
+						usr.setTime_in(time_in);
+					//	Date time_out = dateFormat.parse(cursor.getString(cursor.getColumnIndex(DBHelper.KEY_TIME_OUT)));
+					//	usr.setTime_out(time_out);
+					//	Date total_time = dateFormat.parse(cursor.getString(cursor.getColumnIndex(DBHelper.KEY_TOTAL_TIME)));
+					//	Long total = total_time.getTime();
+					//	usr.setTotal_time(total);
+						user.add(usr);				
+
+				}
+			while (cursor.moveToNext());
+		}
+		cursor.close();
+		// return list
+		return user;
+		
 	}
 	
 	public void loadQuestions(BufferedReader reader) throws IOException{
