@@ -11,6 +11,8 @@ import java.util.Locale;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -58,8 +60,17 @@ public class ScoreActivity extends Activity{
 	    	
 	    //	tv1=(TextView)findViewById(R.id.textView1);
 			tv2=(TextView)findViewById(R.id.textView2);
-			tv2.setText("  " + score);
+			tv2.setText("  " + score);	
+			  
+			  
+				MediaPlayer mPlayer = MediaPlayer.create(getBaseContext(), R.raw.crowd_cheer);
+				mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+				mPlayer.start();
+						
+			
 	    	updateUser(ID);
+	    	
+
 	    	//Log.d("id in score activity", String.valueOf(ID));
 	   }
 	   
@@ -77,15 +88,16 @@ public class ScoreActivity extends Activity{
 		  //make updates
 		  //get most recent row for this user
 	        if(user_info != null && user_info.size() > 0){
-	        	Log.d("udpating user info", "");
+	        //	Log.d("udpating user info", "");
 		  user = user_info.get(user_info.size() - 1);
 		  user.setCoins(coins);
 		  user.setScore(score);
 		  user.setTime_out(date);
 		  game_id = user.getGameNum();
 		  Long t =  user.getTime_out().getTime() - user.getTime_in().getTime(); //milliseconds
-		Log.d("total time", t.toString());
+		//Log.d("total time", t.toString());
 		  user.setTotal_time(t); //get difference in seconds
+
 		  
 		 db.updateTracking(user);
 	        }
@@ -102,6 +114,7 @@ public class ScoreActivity extends Activity{
 	   
 	   
 	   public void onExit(View view){ //close app
+		   stopService(new Intent(this, MusicService.class));
             System.exit(1);
             finish();
 	   }

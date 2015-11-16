@@ -2,6 +2,8 @@ package com.example.hobokentrivia;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +17,12 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+//		MediaPlayer mPlayer = MediaPlayer.create(MainActivity.this, R.raw.music);
+//		mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//		mPlayer.setLooping(true);
+//		mPlayer.start();
+//	
+		startService(new Intent(this, MusicService.class));
 		
 		Button new_button = (Button)findViewById(R.id.New_Game);
 		

@@ -22,10 +22,11 @@ import java.util.Scanner;
 	import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
-
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -161,6 +162,11 @@ import com.example.hobokentrivia.DBHelper;
 				     }
 
 				     public void onFinish() {
+				    	 
+				 		MediaPlayer mPlayer = MediaPlayer.create(getBaseContext(), R.raw.time_up);
+						mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+						mPlayer.start();
+				    	//mPlayer.release();
 				         mTextField.setText("Time's Up!");
 				         nwrong++;
 				         if(questionInRound < 10){
@@ -236,6 +242,12 @@ import com.example.hobokentrivia.DBHelper;
 			for (int i=0;i<4;i++){
 				if(As[i].getId()==selectedId){
 					if (As[i].isCorrect()==true){
+						
+						MediaPlayer mPlayer = MediaPlayer.create(getBaseContext(), R.raw.correct_answer_v2);
+						mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+						mPlayer.start();
+						//mPlayer.release();
+						
 						ncorrect++;
 
 						view.setBackgroundColor(gcolor);
@@ -243,6 +255,12 @@ import com.example.hobokentrivia.DBHelper;
 
 					}
 					else 	{
+						
+						MediaPlayer mPlayer = MediaPlayer.create(getBaseContext(), R.raw.wrong_answer);
+						mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+						mPlayer.start();
+						//mPlayer.release();
+						
 						nwrong++;
 
 						view.setBackgroundColor(rcolor);
