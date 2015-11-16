@@ -10,9 +10,11 @@ import java.util.Locale;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ScoreActivity extends Activity{
@@ -27,6 +29,7 @@ public class ScoreActivity extends Activity{
 	private int score;
 	private TrackUser user;
 	private int game_id;
+	Drawable background;
 
 	   protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -37,22 +40,27 @@ public class ScoreActivity extends Activity{
 	    	coins = extras.getInt("coins");
 	    	score = extras.getInt("score");
 	    	ID = extras.getInt("id");
+	    	//tv1=(TextView)findViewById(R.id.textView1);
+	    	RelativeLayout layout =(RelativeLayout)findViewById(R.id.background);
+	    	
 	    	if(coins >= 0 && coins < 5 ){
-	    		level = "Novice";
+	    		level = "novice";
+	    		layout.setBackgroundResource(R.drawable.novice);
 	    	}
 	    	else if(coins >= 5 && coins < 9){
-	    		level = "Intermediate";
+	    		level = "intermediate";
+	    		layout.setBackgroundResource(R.drawable.intermediate);
 	    	}
 	    	else if(coins >= 9){
-	    		level = "Expert";
+	    		level = "expert";
+	    		layout.setBackgroundResource(R.drawable.expert);
 	    	}
 	    	
-	    	tv1=(TextView)findViewById(R.id.textView1);
+	    //	tv1=(TextView)findViewById(R.id.textView1);
 			tv2=(TextView)findViewById(R.id.textView2);
-			tv1.setText("Coins Won: " + coins);
-			tv2.setText("Your Hoboken expertise: " + level);
+			tv2.setText("  " + score);
 	    	updateUser(ID);
-	    	Log.d("id in score activity", String.valueOf(ID));
+	    	//Log.d("id in score activity", String.valueOf(ID));
 	   }
 	   
 	   public void updateUser(int id){
@@ -85,6 +93,7 @@ public class ScoreActivity extends Activity{
    	   
 	   
 	   public void onRestart(View view){ //replay
+		   finish();
 		   Intent i = new Intent(ScoreActivity.this, Choose_Difficulty.class);
 		   i.putExtra("id", ID);
 		   i.putExtra("game_id", game_id);

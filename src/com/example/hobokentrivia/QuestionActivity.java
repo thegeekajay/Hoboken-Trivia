@@ -288,7 +288,7 @@ import com.example.hobokentrivia.DBHelper;
 		
 		public void OnClickNextQuestion(View v)
 		{
-		if(!skipped)
+		if(!skipped && questionInRound < 10)
 			nextQuestion();
 		}
 
@@ -298,7 +298,7 @@ import com.example.hobokentrivia.DBHelper;
 		{ 
 
 			//calculate score
-			coins = ncorrect - nwrong;
+			coins = 10 - nwrong;
 			score_total = ncorrect;
 			if(coins < 0){
 				coins = 0;

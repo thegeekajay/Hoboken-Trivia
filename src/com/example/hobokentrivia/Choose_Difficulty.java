@@ -50,7 +50,7 @@ import android.widget.Toast;
 		 }
 		    
 		    public void onHome(View view){
-		    	setContentView(R.layout.choose_difficulty);
+		    //	setContentView(R.layout.choose_difficulty);
 		    }
 		    
 		    public void display(View view) {
