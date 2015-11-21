@@ -34,6 +34,9 @@ import com.example.hobokentrivia.DBHelper;
 		private Button B3;
 		private Button B4;
 		private Button score;
+		private Button pauseGame;
+		private Button resumeGame;
+		private Button btnDisplay;
 		private TextView tv;
 		private TextView textView1; 
 		Question Q=new Question();
@@ -45,6 +48,8 @@ import com.example.hobokentrivia.DBHelper;
 		private int[] index;
 		private boolean skipped;
 		private CountDownTimer time;
+		private CountDownTimer time2;
+		private String statues=null; 
 		private int ID;
 		private int score_total;
 		Map<Integer, Question> QsSet = new HashMap<Integer, Question>();
@@ -56,6 +61,8 @@ import com.example.hobokentrivia.DBHelper;
 		private int game_id;
 		private Object music_state;
 		private ImageButton music_btn;
+	    long tRemaining; 
+	    boolean IsResumed=false; 
 
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +80,8 @@ import com.example.hobokentrivia.DBHelper;
 			}						
 			
 			db=new DBHelper(this, reader); //call to db
-	
+
+			btnDisplay=(Button)findViewById(R.id.button1);
 			textView1=(TextView)findViewById(R.id.textView1);
 			tv=(TextView)findViewById(R.id.textView2);
 			B1=(Button)findViewById(R.id.button2);
@@ -81,8 +89,13 @@ import com.example.hobokentrivia.DBHelper;
 			B3=(Button)findViewById(R.id.button4);
 			B4=(Button)findViewById(R.id.button5);
 			score=(Button)findViewById(R.id.button6);
+			pauseGame=(Button)findViewById(R.id.button7);
+			resumeGame=(Button)findViewById(R.id.button8);
+			resumeGame.setVisibility(View.GONE);
 			mTextField=(TextView)findViewById(R.id.timer);
 			score.setVisibility(View.GONE);
+			btnDisplay.setVisibility(View.INVISIBLE);
+			
 			ncorrect=0;
 			nwrong=0;
 			
@@ -113,8 +126,7 @@ import com.example.hobokentrivia.DBHelper;
 			 	 
 			 
 				 ID = db.startTracking(); //start tracking user 
-			 
-			 Log.d("userid", String.valueOf(ID));
+			
 			switch(message){
 			case "No Time Limit":
 				timer = false;
@@ -148,18 +160,99 @@ import com.example.hobokentrivia.DBHelper;
 
 		private void displayQS() {
 			int Qnum=questionInRound+1;	
-			
+			statues= "displayQS";
 			textView1.setText("Question #"+ Qnum); //+" out of 10");
 			enableAnswerButtons();
 			resetColor();
 			
-			if(timer){ //add timer
-				 time = new CountDownTimer(21000, 1000) { //20 second count down
+			if(timer){
+				long timerSeconds=11000;
+				displayTimer(timerSeconds);
+
+			}
+			
+//			if(timer){ //add timer
+//				 time = new CountDownTimer(21000, 1000) { //20 second count down
+//
+//
+//					public void onTick(long millisUntilFinished) {
+//				         mTextField.setText(" Seconds: " + millisUntilFinished / 1000);
+//				        // mTextField.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_lock_idle_alarm, 0, 0, 0);
+//				     }
+//
+//				     public void onFinish() { //time's up
+//				    	 //show correct answer
+//				    	 int id = 0;
+//				    	 for(int k = 0; k < 4; k++){
+//								if(As[k].isCorrect()){
+//									 id = As[k].getId();
+//								}
+//							}
+//							Button B = (Button) findViewById(id);
+//							B.setBackgroundColor(Color.GREEN);
+//							B.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.checkbox_on_background, 0, 0, 0);
+//				    	 
+//				    	//only enable sound if user did not stop music
+//				    	 if(music_btn.getTag() == "pause"){
+//						 		MediaPlayer mPlayer = MediaPlayer.create(getBaseContext(), R.raw.time_up_v2);
+//								mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//								mPlayer.setVolume(100, 100);
+//								mPlayer.start(); 
+//				    	 }
+//				    	
+//				         nwrong++;
+//				         if(questionInRound < 10){
+//				        	 //need a delay of 1 second before next question is brought up to show correct answer
+//				        	 
+//				        	 new CountDownTimer(1000, 1000) { //delay 1 second
+//
+//				        		   public void onTick(long millisUntilFinished) {
+//				        		   }
+//
+//				        		   public void onFinish() {
+//				        		       nextQuestion();
+//				        		   }
+//
+//				        		}.start();				             
+//				         }
+//				         else{
+//				        	 score.setVisibility(View.VISIBLE);
+//				         }
+//				     }
+//				  }.start();
+
+
+			
+			//get next question from question hash map
+			Q = QsSet.get(index[Qnum - 1]);
+			
+			//get answer set for this question and set buttons
+			As=AnsSet.get(Q.getId());
+			tv.setText(Q.getQuestion());
+			B1.setId(As[0].getId());
+			B1.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0); //clear check mark and 'X' icons
+			B1.setText(As[0].getAnswer());
+			B2.setId(As[1].getId());
+			B2.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+			B2.setText(As[1].getAnswer());
+			B3.setId(As[2].getId());
+			B3.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+			B3.setText(As[2].getAnswer());
+			B4.setId(As[3].getId());
+			B4.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+			B4.setText(As[3].getAnswer());
+			questionInRound++;
+			
+		}
+
+		private void displayTimer(long timerSeconds) {
+			
+			 time = new CountDownTimer(21000, 1000) { //20 second count down
 
 
 					public void onTick(long millisUntilFinished) {
 				         mTextField.setText(" Seconds: " + millisUntilFinished / 1000);
-				        // mTextField.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_lock_idle_alarm, 0, 0, 0);
+				         tRemaining=millisUntilFinished; 
 				     }
 
 				     public void onFinish() { //time's up
@@ -193,6 +286,7 @@ import com.example.hobokentrivia.DBHelper;
 
 				        		   public void onFinish() {
 				        		       nextQuestion();
+				        		       btnDisplay.setVisibility(View.VISIBLE);
 				        		   }
 
 				        		}.start();				             
@@ -202,28 +296,7 @@ import com.example.hobokentrivia.DBHelper;
 				         }
 				     }
 				  }.start();
-			}
-			
-			//get next question from question hash map
-			Q = QsSet.get(index[Qnum - 1]);
-			
-			//get answer set for this question and set buttons
-			As=AnsSet.get(Q.getId());
-			tv.setText(Q.getQuestion());
-			B1.setId(As[0].getId());
-			B1.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0); //clear check mark and 'X' icons
-			B1.setText(As[0].getAnswer());
-			B2.setId(As[1].getId());
-			B2.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-			B2.setText(As[1].getAnswer());
-			B3.setId(As[2].getId());
-			B3.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-			B3.setText(As[2].getAnswer());
-			B4.setId(As[3].getId());
-			B4.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-			B4.setText(As[3].getAnswer());
-			questionInRound++;
-
+				  IsResumed=false;
 		}
 
 
@@ -258,6 +331,7 @@ import com.example.hobokentrivia.DBHelper;
 		}
 		
 		public void result(View view) {
+			statues="result";
 			disableAnswerButtons();
 			int rcolor = Color.RED;
 			int gcolor=Color.GREEN;
@@ -316,6 +390,7 @@ import com.example.hobokentrivia.DBHelper;
 						}
 						Button B = (Button) findViewById(id);
 						B.setBackgroundColor(gcolor);
+
 						B.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.checkbox_on_background, 0, 0, 0);
 
 					}
@@ -330,21 +405,29 @@ import com.example.hobokentrivia.DBHelper;
 				}
 				
 		//	Toast.makeText(QuestionActivity.this,QuestionActivity.result_text,Toast.LENGTH_SHORT).show();
+
 			if(questionInRound == 10 && skipped == false){
 				  score.setVisibility(View.VISIBLE);
 			}
+			else 
+				btnDisplay.setVisibility(View.VISIBLE);
 		
 			
 		}
 
-		public void nextQuestion(){	
-			displayQS();	
+	
+			public void nextQuestion(){
+		statues="nextQuestion";
+		btnDisplay.setVisibility(View.INVISIBLE);
+			displayQS();
+
 		}
 		
 		public void OnClickNextQuestion(View v)
 		{
 		if(!skipped && questionInRound < 10)
 			nextQuestion();
+		btnDisplay.setVisibility(View.INVISIBLE);
 		}
 
 		
@@ -378,6 +461,89 @@ import com.example.hobokentrivia.DBHelper;
 	    	startActivity(i);
 	    	finish();
 
+		} 
+		
+		@Override
+		public void onPause() {
+		    super.onPause();
+		  
+		    
+		   
 		}
+		
+		@Override
+		public void onResume() {
+		    super.onResume();
+		    
+		    
+		}
+
+public void pause(View v)
+{
+	B1.setVisibility(View.GONE);
+	B2.setVisibility(View.GONE);
+	B3.setVisibility(View.GONE);
+	B4.setVisibility(View.GONE);
+	tv.setVisibility(View.GONE);
+	mTextField.setVisibility(View.GONE);
+	textView1.setVisibility(View.GONE);
+	pauseGame.setVisibility(View.GONE);
+	btnDisplay.setVisibility(View.GONE);
+	resumeGame.setVisibility(View.VISIBLE);
+	IsResumed=false;
+	if (timer)
+		time.cancel();
+		
+	onPause();
+	
+	
+}
+public void resume(View v)
+{
+	B1.setVisibility(View.VISIBLE);
+	B2.setVisibility(View.VISIBLE);
+	B3.setVisibility(View.VISIBLE);
+	B4.setVisibility(View.VISIBLE);
+	tv.setVisibility(View.VISIBLE);
+	
+	textView1.setVisibility(View.VISIBLE);
+	pauseGame.setVisibility(View.VISIBLE);
+	resumeGame.setVisibility(View.GONE);
+	btnDisplay.setVisibility(View.VISIBLE);
+
+	if (timer)
+	{ 
+		mTextField.setVisibility(View.VISIBLE);
+		displayTimer(tRemaining);
+		/*time2=new  CountDownTimer(tRemaining, 1000){
+			public void onTick(long millisUntilFinished) {
+				
+		         mTextField.setText("Seconds remaining: " + millisUntilFinished / 1000);
+		         tRemaining=millisUntilFinished; 
+		     }
+			public void onFinish() {
+		    	 
+		 		MediaPlayer mPlayer = MediaPlayer.create(getBaseContext(), R.raw.time_up);
+				mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+				mPlayer.start();
+		    	
+		         mTextField.setText("Time's Up!");
+		         nwrong++;
+		         if(questionInRound < 10){
+		             nextQuestion(); 
+		             btnDisplay.setVisibility(View.VISIBLE);//***
+		         }
+		         else{
+		        	 score.setVisibility(View.VISIBLE);
+		         }
+		     }
+		  }.start();
+		*/
+		
+
 	}
+		
+	}
+	}
+	
 

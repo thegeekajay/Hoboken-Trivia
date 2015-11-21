@@ -2017,7 +2017,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a003b;
         public static final int action_mode_bar_stub=0x7f0a003a;
         public static final int action_mode_close_button=0x7f0a0023;
-        public static final int action_settings=0x7f0a006d;
+        public static final int action_settings=0x7f0a006f;
         public static final int activity_chooser_view_content=0x7f0a0024;
         public static final int alertTitle=0x7f0a002e;
         public static final int always=0x7f0a0019;
@@ -2029,6 +2029,8 @@ containing a value of this type.
         public static final int button4=0x7f0a0068;
         public static final int button5=0x7f0a0069;
         public static final int button6=0x7f0a006c;
+        public static final int button7=0x7f0a006d;
+        public static final int button8=0x7f0a006e;
         public static final int buttonPanel=0x7f0a0034;
         public static final int cancel_action=0x7f0a005b;
         public static final int checkbox=0x7f0a0036;
