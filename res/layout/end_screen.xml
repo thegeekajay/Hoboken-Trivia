@@ -17,6 +17,15 @@
         android:layout_alignParentTop="true"
         android:background="@drawable/ornghome"
         android:onClick="onHome" />
+    
+        
+        <ImageButton
+           android:id="@+id/controlMusic"
+           android:layout_width="40dp"
+           android:layout_height="40dp"
+           android:layout_alignParentTop="true"
+           android:layout_alignParentRight="true"
+           android:onClick="onSetMusic" />
 
     <TextView
         android:id="@+id/textView2"

@@ -1,60 +1,300 @@
-1- Name the famous singer who hails from Hoboken:
-correct :2
+1- Stevens Institute of Technology was the first college in the U.S. to be solely dedicated to what field of study?
+correct:1
+1- Mechanical Engineering
+2- Civil Engineering
+3- Military Engineering 
+4- Electrical Engineering
+2- Who is the current president of Stevens Institute of Technology?
+correct:2
+1- Harold J Raveche
+2- Nariman Farvardin
+3- Henry Morton
+4- Harvey N Davis
+3- What is the Steven's mascot name?
+correct:3
+1- Scarlet Knights
+2- Blizzard T. Husky
+3- Attila the Duck
+4- Reville the Collie
+4- Stevens has a satellite campus in which of the following cities?
+correct:1
+1- Washington, D.C.
+2- Boston
+3- New York
+4- Richmond
+5- In what year was Stevens Institute of Technology established?
+correct:4
+1- 1905
+2- 1880
+3- 1891
+4- 1870
+6- Stevens is comprised of how many schools/colleges?
+correct: 1
+1- Four
+2- Five
+3- Three
+4- Six
+7- What famous Stevens alumni is considered the father of industrial engineering?
+correct: 3
+1- Charles Stewart Mott
+2- Richard H Rice
+3- Frederick Winslow Taylor
+4- Walter Kiddie
+8-  Approximately how many students attend Stevens?
+correct: 1
+1- 7200
+2- 6000
+3- 7500
+4- 8000
+9- What is the name of the library in Stevens Institute of Technology? 
+correct: 4
+1- Lawrence T Babbio 
+2- Edwin A Stevens 
+3- Burchand Building
+4- Samuel C Williams
+10-  Hoboken's highest point is________. 
+correct: 2
+1- Nariman Point
+2- Castle Point
+3- CJ Point
+4- Hoboken Point
+11- When was Hoboken discovered? 
+correct: 1
+1- 1609
+2- 1600
+3- 1702
+4- 1800
+12- Hoboken was purchased by Stevens Family. What was the price?
+correct: 1
+1- 18,360 pounds      
+2- 20,000 pounds
+3- 23,000 pounds     
+4- 18,633 pounds
+13- The Erie-Lackawanna Terminal was built to replace the original terminal, which was destroyed two years earlier by fire. In which year was it built.
+correct: 1
+1- 1907
+2- 1809
+3- 1889
+4- 1905
+14- Development brought immigrants to Hoboken and immigrants brought their varied cultures.Who were the first wave of immigrants?
+correct: 4
+1- Irish
+2- Hispanics
+3- Portuguese
+4- German
+15- By 1920, who outnumbered Germans among the foreign born made the city of Hoboken theirs?
+correct: 1
+1- Italians
+2- Hispanics
+3- Portuguese
+4- Swedish
+16- Edgar Allen Poe's "Mystery of Marie Roget" was based on a Hoboken Murder of 1841. Who was the victim? 
+correct: 2
+1- The Black Dahlia
+2- Mary Rogers
+3- The Boy in the Box
+4- Julia Wallace
+17- Which Academy Award winning film  was filmed entirely in Hoboken? 
+correct: 3
+1- The Phone Call
+2- Seventh Heaven
+3- On the Waterfront 
+4- Wings
+18- Which Hoboken resident was the main character in a book titled "The Witch of Wall Street."? 
+correct: 1
+1- Hetty Green 
+2- Richard Barone
+3- Bob Borden
+4- Christina Fonatelli
+19- Hoboken is also the location of a first recorded, now popular game which was played in the Elysian Fields in 1846. Which game? 
+correct: 3
+1- Lacrosse 
+2- American Football
+3- Baseball
+4- Basketball
+20- The first American yacht club was built in Hoboken. Which year was it built in?
+correct: 1
+1- 1844
+2- 1900
+3- 1875
+4- 1902
+21- Hoboken's unofficial nickname is_________.
+correct: 3
+1- Big Apple
+2- The City of Brotherly love
+3- the Mile Square City
+4- Sin City
+22- Hoboken is ranked the #1 ______city in the country.
+correct: 1
+1- Most Walkable
+2- Richest
+3- Most Liveable
+4- Affordable
+23- Which street of Hoboken made it to the Top 10 Great Streets for 2010?
+correct: 1
+1- Washington Street
+2- River Street
+3- Newark Street
+4- Madison Street
+24- The best place to eat crepes in Hoboken?
+correct: 1
+1- Crepe Guru
+2- Crepes and Things
+3- Bar Suzette
+4- Golden Crepes
+25- If you want to know about Hoboken dining and drinking places, you can  visit __________.
+correct: 2
+1- Seamless
+2- Hoboken menus
+3- Hoboken eating
+4- None of the above
+26- A famous bakery of Hoboken that was a place for a reality show called Cake boss is?
+correct: 2
+1- Sweet
+2- Carlo's Bakery
+3- Old German Bakery
+4- Dom's Bakery Grand
+27- _________ was named the best Italian deli of NJ by NJ Monthly Magazine. It is situated in Hoboken.
+correct: 1        
+1- Lisa's Italian Deli
+2- Vito's
+3- Fiore's Deli
+4- Luca Brasi's Deli
+28- You can eat an award winning mozzarella cheese in Hoboken at_________.
+correct: 3
+1- Vito's
+2- Fran's Deli
+3- Fiore's Deli
+4- Lisa's Italian Deli
+29- The only restaurant in Hoboken that offers a French Bistro style menu. 
+correct: 1 
+1- Elysian Café
+2- bwe Cafe
+3- Maroon Cafe Inc.
+4- D's Soul Full Cafe
+30- If you want to try best Asian Cuisine in Hoboken, you can go to :
+correct: 3
+1- No. 1 Chinese
+2- Precious Chinese Cuisine
+3- Okinawa
+4- Asian Cuisine
+31- You can have good American food and Bull Riding in Hoboken at _______. 
+correct: 3
+1- The Madison Bar and Grill
+2- Amanda's Restaurant
+3- Skewed Cow
+4- Hoboken Bar & Grill
+32- To taste the Austin Barbeque, you go to________. 
+correct: 1
+1- House of Que
+2- Smokin' Barell
+3- Latin BBQ
+4- Farside
+33- Name the famous singer who hails from Hoboken:
+correct: 2
 1- Elvis Presley
 2- Frank Sinatra
 3- Freddie Mercury
 4- Nina Simone
-2- Who was the founder of Hoboken?
-correct :3
+34- Who was the founder of Hoboken?
+correct: 4
 1- John Cox Stevens
 2- Robert L. Stevens
 3- Edwin Augustus Stevens
-4- Colonel John Stevens 
-3- What was Hoboken resident Chaim Hirschensohni's profession?
-correct :2
+4- Colonel John Stevens
+35- What was Hoboken resident Chaim Hirschensohn's profession?
+correct: 3
 1- Mechanical Engineer
 2- Doctor
 3- Chief Rabbi
 4- Politician
-4- Name the steamship invented by Robert L Stevens, which was the first steamship to navigate the ocean successfully when she traveled from New York City to the Delaware River in 1809.
-corrct :1
+36- Name the steamship invented by Robert L Stevens, which was the first steamship to navigate the ocean successfully when she traveled from New York City to the Delaware River in 1809.
+correct: 4
 1- Phoenix
 2- S.S. Drip
 3- Stevens
 4- Hudson
-5-  Who was the inventor of Stevens plow?
-correct :3
+37- Who was the inventor of Stevens plow?
+correct: 4
 1- John Cox Stevens
 2- Richard Stevens
 3- Francis Bowes Stevens
-4- Edwin Augustus Stevens 
-6- Which famous FOX news reporter is a resident of Hoboken?
-correct :1
+4- Edwin Augustus Stevens
+38- Which famous FOX news reporter is a resident of Hoboken?
+correct: 4
 1- Bret Baier
 2- Evan Byah
 3- Carl Cameron
 4- Juliet AnnMarie Huddy
-7- Which Hoboken resident was a famous photographer who dedicated his career into making photography an accepted art form?
-correct :4
+39- Which Hoboken resident was a famous photographer who dedicated his career into making photography an accepted art form?
+correct: 2
 1- Ansel Adams
 2- Alfred Stieglitz
 3- Henri Cartier-Bresson
-4- Richard Avedon 
-8- What are some famous works of Hoboken resident and writer Daniel Manus Pinkwater?
-correct :2
+4- Richard Avedon
+40- What are some famous works of Hoboken resident and writer Daniel Manus Pinkwater?
+correct: 4
 1- Lizard Music
 2- The Snarkout Boys and the Avocado of Death
 3- Fat Men from Space
 4- All of the above
-9- Hoboken resident and journalist, Natalie Morales Rhodes works for which news channel?
-correct :1
+41- Hoboken resident and journalist, Natalie Morales-Rhodes works which news channel?
+correct: 2
 1- FOX News
 2- NBC News
 3- CNN
 4- msnbc
-10- Eli Manning is a Hoboken resident and NFL player. He played for?
-correct :4
+42- Eli Manning is a Hoboken resident and NFL player. He played for _________?
+correct: 3
 1- Dallas Cowboys
 2- San Francisco 49ers
 3- New York Giants
 4- Denver Broncos
+43- Which bar of Hoboken is it's first wine bar?
+correct: 4
+1- Cooper's Union
+2- Bin 14
+3- Onieal's 
+4- Madison Bar and Grill 
+44- Mulligan's Pub claims itself to be the first ________ . 
+correct: 3
+1- Bar of Hoboken
+2- Beer Bar
+3- Football bar
+4- Quiet bar
+45- __________ bar has vintage arcade games, a pool table, darts, rotating art shows. 
+correct: 1
+1- Louise and Jerry's Tavern 
+2- The Teak on the Hudson
+3- Mulligan's Pub
+4- Northern Soul
+46- Which pub does Stevens Institute of Technology conduct it's 'Mix and Mingle' event regularly? 
+correct: 4
+1- Mulligan's Pub
+2- Cooper's Union
+3- Bin 14
+4- Teak on the Hudson
+47- Name the road in Hoboken on the coast of the river Hudson? 
+correct: 1
+1- Frank Sinatra Drive
+2- Washington Street
+3- River Street
+4- Madison Street
+48- The first brewery of USA was located in Hoboken. Name the location of it in the city. 
+correct: 1
+1- Frank Sinatra Rd
+2- Castle Point
+3- Washington Street
+4- Willow Street 
+49- _________ is an indispensable device now, was invented in Hoboken 
+correct: 3
+1- Button
+2- Zipper
+3- Locks
+4- Hooks
+50- Number of undergraduate programs available at Stevens are? 
+correct: 4
+1- 40
+2- 33
+3- 35
+4- 32 

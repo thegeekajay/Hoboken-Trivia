@@ -1,7 +1,5 @@
 package com.example.hobokentrivia;
 
-import java.sql.Time;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,14 +12,13 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class ScoreActivity extends Activity{
 	
-	private int coins;
 	private  String level;
 	private TextView tv1;
 	private TextView tv2;
@@ -32,46 +29,52 @@ public class ScoreActivity extends Activity{
 	private TrackUser user;
 	private int game_id;
 	Drawable background;
+	private ImageButton music_btn;
+	private Object music_state;
 
 	   protected void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.end_screen);
 	        db=new DBHelper(this, null);
-	        //display coins won and expertise level
-	    	Bundle extras = getIntent().getExtras(); 
-	    	coins = extras.getInt("coins");
+	        
+	        //get score and ID
+	        
+	        Bundle extras = getIntent().getExtras(); 
 	    	score = extras.getInt("score");
 	    	ID = extras.getInt("id");
-	    	//tv1=(TextView)findViewById(R.id.textView1);
+	    	music_state = extras.get("music");
+	    	
+	    	 //set music button as it was from previous screen
+	        music_btn = (ImageButton)findViewById(R.id.controlMusic);
+	        if(music_state.equals("pause")){
+				music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode);
+				music_btn.setTag("pause");
+	        }
+	        else if(music_state.equals("resume")){
+				music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode_off);
+				music_btn.setTag("resume");
+	        }
+	    	
 	    	RelativeLayout layout =(RelativeLayout)findViewById(R.id.background);
 	    	
-	    	if(coins >= 0 && coins < 5 ){
+	    	//determine level based on score, set background appropriately
+	    	if(score >= 0 && score < 5 ){
 	    		level = "novice";
 	    		layout.setBackgroundResource(R.drawable.novice);
 	    	}
-	    	else if(coins >= 5 && coins < 9){
+	    	else if(score >= 5 && score < 9){
 	    		level = "intermediate";
 	    		layout.setBackgroundResource(R.drawable.intermediate);
 	    	}
-	    	else if(coins >= 9){
+	    	else if(score >= 9){
 	    		level = "expert";
 	    		layout.setBackgroundResource(R.drawable.expert);
 	    	}
 	    	
-	    //	tv1=(TextView)findViewById(R.id.textView1);
 			tv2=(TextView)findViewById(R.id.textView2);
 			tv2.setText("  " + score);	
-			  
-			  
-				MediaPlayer mPlayer = MediaPlayer.create(getBaseContext(), R.raw.crowd_cheer);
-				mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-				mPlayer.start();
-						
-			
+									
 	    	updateUser(ID);
-	    	
-
-	    	//Log.d("id in score activity", String.valueOf(ID));
 	   }
 	   
 	   public void updateUser(int id){
@@ -84,23 +87,17 @@ public class ScoreActivity extends Activity{
 		  SimpleDateFormat dateFormat = new SimpleDateFormat(
 	                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
 	        Date date = new Date();
-	     //  String time_out = dateFormat.format(date);
-		  //make updates
+	
 		  //get most recent row for this user
 	        if(user_info != null && user_info.size() > 0){
-	        //	Log.d("udpating user info", "");
 		  user = user_info.get(user_info.size() - 1);
-		  user.setCoins(coins);
 		  user.setScore(score);
 		  user.setTime_out(date);
 		  game_id = user.getGameNum();
 		  Long t =  user.getTime_out().getTime() - user.getTime_in().getTime(); //milliseconds
-		//Log.d("total time", t.toString());
-		  user.setTotal_time(t); //get difference in seconds
-
-		  
+		  user.setTotal_time(t); //get difference in second		  
 		 db.updateTracking(user);
-	        }
+	      }
 	   }
    	   
 	   
@@ -109,6 +106,7 @@ public class ScoreActivity extends Activity{
 		   Intent i = new Intent(ScoreActivity.this, Choose_Difficulty.class);
 		   i.putExtra("id", ID);
 		   i.putExtra("game_id", game_id);
+		   i.putExtra("music", music_btn.getTag().toString());
 		   startActivity(i);  
 	   }
 	   
@@ -119,10 +117,26 @@ public class ScoreActivity extends Activity{
             finish();
 	   }
 	   
-		public void onHome(View view){
-			startActivity(new Intent(ScoreActivity.this, Choose_Difficulty.class));
+		public void onHome(View view){ //go back to home screen
+			Intent i = new Intent(this, Choose_Difficulty.class);
+			i.putExtra("music", music_btn.getTag().toString());
+			startActivity(i);
 
 		}
 	   
+		//set music on/off
+		public void onSetMusic(View v){
+			
+			if(music_btn.getTag() == "pause"){
+				music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode_off);
+				stopService(new Intent(this, MusicService.class));
+				music_btn.setTag("resume");
+			}
+			else if(music_btn.getTag() == "resume"){
+				music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode);
+				startService(new Intent(this, MusicService.class));
+				music_btn.setTag("pause");
+			}
+		}
 	   
 }

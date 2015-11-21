@@ -4,22 +4,28 @@ import android.app.Activity;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 	public class Choose_Difficulty extends Activity {
 		
-		  private RadioGroup radioCatGroup;
-		  private RadioButton radioButton;
-		  private Button btnDisplay;
-		  private int id = 0;
-		  private int game_id = 0;
+		private RadioGroup radioCatGroup;
+		private RadioButton radioButton;
+		private Button btnDisplay;
+		private int id = 0;
+		private int game_id = 0;
+		private Object music_state;
+		private ImageButton music_btn;
+		private Button btn;
 		  
 		    @Override
 		    protected void onCreate(Bundle savedInstanceState) {
@@ -33,37 +39,56 @@ import android.widget.Toast;
 		        	if(extras.containsKey("game_id")){
 		        		game_id = extras.getInt("game_id");
 		        	}
+		        	if(extras.containsKey("music"))
+		        		music_state = extras.get("music");
+		        }
+		        //set music button as it was from previous screen
+		        music_btn = (ImageButton)findViewById(R.id.controlMusic);
+		        if(music_state.equals("pause")){
+					music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode);
+					music_btn.setTag("pause");
+		        }
+		        else if(music_state.equals("resume")){
+					music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode_off);
+					music_btn.setTag("resume");
 		        }
 		        
-		        
-		        radioCatGroup=(RadioGroup)findViewById(R.id.radioGroup);
-		        
-		        btnDisplay=(Button)findViewById(R.id.button1);
-		        
-		        btnDisplay.setOnClickListener(new View.OnClickListener() {
-		           @Override
-		           public void onClick(View v) {
-		              int selectedId=radioCatGroup.getCheckedRadioButtonId();
-		              radioButton=(RadioButton)findViewById(selectedId);
-		          //    Toast.makeText(Home.this,radioButton.getText(),Toast.LENGTH_SHORT).show();
-		              display(v);
-		           }	    
-		    });
 		 }
+		    
+		    public void onButtonClick(View v){
+		    	   int selectedId = v.getId();
+	        	   btn = (Button)findViewById(selectedId);
+	        	   display(v);
+		    }
+		    
+			//set music on/off
+			public void onSetMusic(View v){
+				
+				if(music_btn.getTag() == "pause"){
+					music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode_off);
+					stopService(new Intent(this, MusicService.class));
+					music_btn.setTag("resume");
+				}
+				else if(music_btn.getTag() == "resume"){
+					music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode);
+					startService(new Intent(this, MusicService.class));
+					music_btn.setTag("pause");
+				}
+			}
+			
 		    
 		    public void onHome(View view){
 		    //	setContentView(R.layout.choose_difficulty);
 		    }
 		    
 		    public void display(View view) {
-		    	//System.out.println("in display question method");
-		    	// Toast.makeText(Choose_Difficulty.this,radioButton.getText(),Toast.LENGTH_SHORT).show();
 		    	Intent i = new Intent(Choose_Difficulty.this, QuestionActivity.class);
-		    	i.putExtra("radio_chosen", radioButton.getText().toString());
+		    	i.putExtra("difficulty", btn.getText());
 		    	if(id > 0 && game_id > 0 ){
 		    		i.putExtra("id", id);
 		    		i.putExtra("game_id", game_id);
 		    	}
+		    	i.putExtra("music", music_btn.getTag().toString());
 		    	startActivity(i);
 		    	finish();
 		    }

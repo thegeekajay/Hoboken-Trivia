@@ -17,6 +17,16 @@
            android:background="@drawable/ornghome"
            android:onClick="onHome" />
        
+           
+        <ImageButton
+           android:id="@+id/controlMusic"
+           android:layout_width="40dp"
+           android:layout_height="40dp"
+           android:layout_marginRight="50dp"
+           android:layout_alignParentTop="true"
+           android:layout_alignParentRight="true"
+           android:onClick="onSetMusic" />
+       
         <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -31,57 +41,49 @@
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         android:textStyle="bold" />
-
-      <RadioGroup
-          android:id="@+id/radioGroup"
-          android:layout_width="fill_parent"
-          android:layout_height="300dp"
-          android:layout_below="@+id/textView1"
-          android:layout_marginTop="40dp"
-          android:background="#44a1f2"
-          android:weightSum="1" >
-   
-   <RadioButton
-       android:id="@+id/radioButton"
+           
+      <LinearLayout 
+    android:id="@+id/LinearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true"
+    android:layout_centerInParent="true" >
+    
+       <Button
+       android:id="@+id/button1"
        android:layout_width="150dp"
        android:layout_height="wrap_content"
        android:layout_gravity="center_horizontal"
-       android:background="@drawable/difficultybutton"
-       android:checked="true"
-       android:gravity="center_vertical|clip_horizontal"
+       android:background="@drawable/button"
+       android:layout_below="@+id/LinearLayout1"
+       android:layout_centerInParent="true"
+       android:gravity="center"
        android:text="No Time Limit"
        android:textColor="#FFFFFF"
        android:textSize="15dp"
-       android:textStyle="bold" />
-
-   <RadioButton
-       android:id="@+id/radioButton2"
+       android:textStyle="bold" 
+        android:onClick="onButtonClick"
+            
+        />
+        
+        <Button
+        android:id="@+id/button2"
        android:layout_width="150dp"
        android:layout_height="wrap_content"
        android:layout_gravity="center_horizontal"
-       android:background="@drawable/difficultybutton"
+       android:background="@drawable/button"
        android:checked="false"
-       android:gravity="center_vertical"
+       android:gravity="center"
+       android:layout_below="@+id/button1"
+       android:layout_centerInParent="true"
        android:text="Time Limit"
        android:textColor="#FFFFFF"
        android:textSize="15dp"
-       android:textStyle="bold" />
-     
-</RadioGroup>
+       android:textStyle="bold" 
+       android:onClick="onButtonClick" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button1"
-        android:text="START GAME"
-        android:onClick="display"
-        android:background="@drawable/difficultybutton"
-		android:textColor="#FFFFFF"
-		android:textStyle="bold"
-		android:textSize="18dp"
-        android:layout_below="@+id/radioGroup"
-        android:layout_centerHorizontal="true" />
-    
+</LinearLayout>
 </RelativeLayout>
 
 

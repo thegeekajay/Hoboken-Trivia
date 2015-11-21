@@ -29,7 +29,7 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper{
 	
-	private static final int DATABASE_VERSION = 14;
+	private static final int DATABASE_VERSION = 19;
 	// Database Name
 	private static final String DATABASE_NAME = "Hoboken_Trivia";
 	// tasks table name
@@ -129,7 +129,6 @@ public class DBHelper extends SQLiteOpenHelper{
 		dbase.insert(TABLE_TRACK_USER, null, values);
 		String selectQuery = "SELECT MAX(USERID) FROM " + TABLE_TRACK_USER;
 		Cursor cursor = dbase.rawQuery(selectQuery, null);
-	//	Log.d("cursor for id", cursor.getString(0));
 		cursor.moveToFirst();
 		int id = cursor.getInt(0);
 		cursor.close();
@@ -139,8 +138,8 @@ public class DBHelper extends SQLiteOpenHelper{
 	
 	public void updateTracking(TrackUser user){
 		dbase = this.getWritableDatabase();
-		Log.d("in update tracking id", String.valueOf(user.getId()));
-		Log.d("updated coins", String.valueOf(user.getCoins()));
+	//	Log.d("in update tracking id", String.valueOf(user.getId()));
+	//	Log.d("updated coins", String.valueOf(user.getCoins()));
 		ContentValues values = new ContentValues();
 		values.put(KEY_GAME_NUM, user.getGameNum());
 		values.put(KEY_SCORE, user.getScore());
@@ -175,11 +174,6 @@ public class DBHelper extends SQLiteOpenHelper{
 						usr.setScore(cursor.getInt(cursor.getColumnIndex(DBHelper.KEY_SCORE)));
 						Date time_in = dateFormat.parse(cursor.getString(cursor.getColumnIndex(DBHelper.KEY_TIME_IN)));
 						usr.setTime_in(time_in);
-					//	Date time_out = dateFormat.parse(cursor.getString(cursor.getColumnIndex(DBHelper.KEY_TIME_OUT)));
-					//	usr.setTime_out(time_out);
-					//	Date total_time = dateFormat.parse(cursor.getString(cursor.getColumnIndex(DBHelper.KEY_TOTAL_TIME)));
-					//	Long total = total_time.getTime();
-					//	usr.setTotal_time(total);
 						user.add(usr);				
 
 				}
@@ -191,15 +185,14 @@ public class DBHelper extends SQLiteOpenHelper{
 		
 	}
 	
+	//load questions from text file 
 	public void loadQuestions(BufferedReader reader) throws IOException{
 
 		if(reader != null){
-		Log.d("inside load questions method", "");
 		while(reader.ready() && (Line = reader.readLine()) != null){
 			Question q1=new Question();
 
 			Answer[] anstemp = new Answer[4];
-			//Log.d("line", Line);
 			String info[] = Line.split("-");
 			
 			id=Integer.parseInt(info[0].trim()); 
@@ -235,6 +228,7 @@ public class DBHelper extends SQLiteOpenHelper{
 	}
 	}
 	
+	//add questions to database
 	public void addQuestion(Question q, Answer[] answer){
 		ContentValues values = new ContentValues();
 		values.put(KEY_QUESTION, q.getQuestion());
@@ -255,9 +249,8 @@ public class DBHelper extends SQLiteOpenHelper{
 		dbase.insert(TABLE_QUESTION, null, values);
 	}
 	
-	
+	//get random set of 10 questions
 	public Map<Integer, Question> getQuestionSet() {
-	//	List<Question> quesList = new ArrayList<Question>();
 		// Select All Query
 		dbase = this.getReadableDatabase();
 		String selectQuery = "SELECT * FROM " + TABLE_QUESTION + " ORDER BY RANDOM() LIMIT 10";
@@ -271,7 +264,6 @@ public class DBHelper extends SQLiteOpenHelper{
 				int id = cursor.getInt(cursor.getColumnIndex(DBHelper.KEY_ID));
 				quest.setId(id);
 				quest.setQuestion(cursor.getString(1));
-			//	Log.d("question", quest.displayQuestion());
 				QsSet.put(id, quest);
 				
 				String correct = "";
@@ -286,29 +278,29 @@ public class DBHelper extends SQLiteOpenHelper{
 					answer.setId(i);	
 					answer.setQid(id);	
 					
+					//option A
 					if(cursor_pos == 3){
-					//	Log.d("opt A", cursor.getString(3));
 						answer.setAnswer(cursor.getString(3));
 						if(cursor.getString(3).equals(correct)){
 							answer.setCorrect(true);
 						}
 					}
+					//option B
 					else if(cursor_pos == 4){
-					//	Log.d("opt B", cursor.getString(4));
 						answer.setAnswer(cursor.getString(4));
 						if(cursor.getString(4).equals(correct)){
 							answer.setCorrect(true);
 						}
 					}
+					//option C
 					else if(cursor_pos == 5){
-					//	Log.d("opt C", cursor.getString(5));
 						answer.setAnswer(cursor.getString(5));
 						if(cursor.getString(5).equals(correct)){
 							answer.setCorrect(true);
 						}
 					}
+					//option D
 					else if(cursor_pos == 6){
-					//	Log.d("opt D", cursor.getString(6));
 						answer.setAnswer(cursor.getString(6));
 						if(cursor.getString(6).equals(correct)){
 							answer.setCorrect(true);
@@ -322,10 +314,11 @@ public class DBHelper extends SQLiteOpenHelper{
 			} while (cursor.moveToNext());
 		}
 		cursor.close();
-		// return quest list
+		// return question list
 		return QsSet;
 	}
 	
+	//return entire answer set
 	public  Map<Integer, Answer[]> returnAnswerSet(){
 		return this.AnsSet;
 	}
