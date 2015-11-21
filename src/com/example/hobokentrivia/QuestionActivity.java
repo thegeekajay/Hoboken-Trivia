@@ -46,6 +46,9 @@ import com.example.hobokentrivia.DBHelper;
 		private Button B3;
 		private Button B4;
 		private Button score;
+		private Button pauseGame;
+		private Button resumeGame;
+		private Button btnDisplay;
 		private TextView tv;
 		private TextView textView1; 
 		Question Q=new Question();
@@ -57,6 +60,8 @@ import com.example.hobokentrivia.DBHelper;
 		private int[] index;
 		private boolean skipped;
 		private CountDownTimer time;
+		private CountDownTimer time2;
+		private String statues=null; 
 		private int ID;
 		private int coins;
 		private int score_total;
@@ -67,6 +72,9 @@ import com.example.hobokentrivia.DBHelper;
 		private BufferedReader reader;
 		private String message;
 		private int game_id;
+	    long tRemaining; 
+	    boolean IsResumed=false; 
+	    
 
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +93,7 @@ import com.example.hobokentrivia.DBHelper;
 			
 			db=new DBHelper(this, reader);
 	
-		//	btnDisplay=(Button)findViewById(R.id.button1);
+			btnDisplay=(Button)findViewById(R.id.button1);
 			textView1=(TextView)findViewById(R.id.textView1);
 			tv=(TextView)findViewById(R.id.textView2);
 			B1=(Button)findViewById(R.id.button2);
@@ -93,8 +101,13 @@ import com.example.hobokentrivia.DBHelper;
 			B3=(Button)findViewById(R.id.button4);
 			B4=(Button)findViewById(R.id.button5);
 			score=(Button)findViewById(R.id.button6);
+			pauseGame=(Button)findViewById(R.id.button7);
+			resumeGame=(Button)findViewById(R.id.button8);
+			resumeGame.setVisibility(View.GONE);
 			mTextField=(TextView)findViewById(R.id.timer);
 			score.setVisibility(View.GONE);
+			btnDisplay.setVisibility(View.INVISIBLE);
+			
 			ncorrect=0;
 			nwrong=0;
 			
@@ -148,35 +161,15 @@ import com.example.hobokentrivia.DBHelper;
 
 
 		private void displayQS() {
+			statues= "displayQS";
 			int Qnum=questionInRound+1;
-			textView1.setText("Question #"+ Qnum); //+" out of 10");
+			textView1.setText("Question #"+ Qnum ); //+" out of 10");
 			enableAnswerButtons();
 			resetColor();
 			
 			if(timer){
-				 time = new CountDownTimer(11000, 1000) { //10 second count down
-
-
-					public void onTick(long millisUntilFinished) {
-				         mTextField.setText("Seconds remaining: " + millisUntilFinished / 1000);
-				     }
-
-				     public void onFinish() {
-				    	 
-				 		MediaPlayer mPlayer = MediaPlayer.create(getBaseContext(), R.raw.time_up);
-						mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-						mPlayer.start();
-				    	//mPlayer.release();
-				         mTextField.setText("Time's Up!");
-				         nwrong++;
-				         if(questionInRound < 10){
-				             nextQuestion(); 
-				         }
-				         else{
-				        	 score.setVisibility(View.VISIBLE);
-				         }
-				     }
-				  }.start();
+				long timerSeconds=11000;
+				displayTimer(timerSeconds);
 			}
 			
 			//get next question from question hash map
@@ -195,6 +188,39 @@ import com.example.hobokentrivia.DBHelper;
 			B4.setText(As[3].getAnswer());
 			questionInRound++;
 
+		}
+
+		private void displayTimer(long timerSeconds) {
+			
+		
+			
+			 time = new CountDownTimer(timerSeconds, 1000) { //10 second count down
+
+
+				public void onTick(long millisUntilFinished) {
+					
+			         mTextField.setText("Seconds remaining: " + millisUntilFinished / 1000);
+			         tRemaining=millisUntilFinished; 
+			     }
+
+			     public void onFinish() {
+			    	 
+			 		MediaPlayer mPlayer = MediaPlayer.create(getBaseContext(), R.raw.time_up);
+					mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+					mPlayer.start();
+			    	//mPlayer.release();
+			         mTextField.setText("Time's Up!");
+			         nwrong++;
+			         if(questionInRound < 10){
+			             nextQuestion(); 
+			             btnDisplay.setVisibility(View.VISIBLE);//***
+			         }
+			         else{
+			        	 score.setVisibility(View.VISIBLE);
+			         }
+			     }
+			  }.start();
+			  IsResumed=false;
 		}
 
 
@@ -227,6 +253,7 @@ import com.example.hobokentrivia.DBHelper;
 		}
 		
 		public void result(View view) {
+			statues="result";
 			disableAnswerButtons();
 			int rcolor = Color.RED;
 			int gcolor=Color.GREEN;
@@ -275,6 +302,7 @@ import com.example.hobokentrivia.DBHelper;
 						Button B = (Button) findViewById(id);
 						B.setBackgroundColor(gcolor);
 						
+						
 
 					}
 				}
@@ -289,17 +317,19 @@ import com.example.hobokentrivia.DBHelper;
 				result_text = "Skipped";
 				}
 				
-			Toast.makeText(QuestionActivity.this,QuestionActivity.result_text,Toast.LENGTH_SHORT).show();
+			//Toast.makeText(QuestionActivity.this,QuestionActivity.result_text,Toast.LENGTH_SHORT).show();
 			if(questionInRound == 10 && skipped == false){
 				  score.setVisibility(View.VISIBLE);
 			}
+			else 
+				btnDisplay.setVisibility(View.VISIBLE);
 		
 			
 		}
 
 		public void nextQuestion(){
-		
-
+		statues="nextQuestion";
+btnDisplay.setVisibility(View.INVISIBLE);
 			displayQS();
 		
 		}
@@ -308,6 +338,7 @@ import com.example.hobokentrivia.DBHelper;
 		{
 		if(!skipped && questionInRound < 10)
 			nextQuestion();
+		btnDisplay.setVisibility(View.INVISIBLE);
 		}
 
 
@@ -331,6 +362,99 @@ import com.example.hobokentrivia.DBHelper;
 	    	startActivity(i);
 	    	finish();
 
+		} 
+		
+		@Override
+		public void onPause() {
+		    super.onPause();
+		  
+		    
+		   
 		}
+		
+		@Override
+		public void onResume() {
+		    super.onResume();
+		    
+		    
+		}
+		
+		/*@Override
+		protected void onSaveInstanceState(Bundle state) {
+		    super.onSaveInstanceState(state);
+		    //state.putIntegerArrayList("index", (ArrayList<Integer>) Index);
+		    state.putInt("questionInRound", questionInRound);
+		    state.putInt("correct", ncorrect);
+		    state.putInt("wrong", nwrong);
+		   state.putBoolean("timer", timer);
+		   
+		}    */
+public void pause(View v)
+{
+	B1.setVisibility(View.GONE);
+	B2.setVisibility(View.GONE);
+	B3.setVisibility(View.GONE);
+	B4.setVisibility(View.GONE);
+	tv.setVisibility(View.GONE);
+	mTextField.setVisibility(View.GONE);
+	textView1.setVisibility(View.GONE);
+	pauseGame.setVisibility(View.GONE);
+	btnDisplay.setVisibility(View.GONE);
+	resumeGame.setVisibility(View.VISIBLE);
+	IsResumed=false;
+	if (timer)
+		time.cancel();
+		
+	onPause();
+	
+	
+}
+public void resume(View v)
+{
+	B1.setVisibility(View.VISIBLE);
+	B2.setVisibility(View.VISIBLE);
+	B3.setVisibility(View.VISIBLE);
+	B4.setVisibility(View.VISIBLE);
+	tv.setVisibility(View.VISIBLE);
+	
+	textView1.setVisibility(View.VISIBLE);
+	pauseGame.setVisibility(View.VISIBLE);
+	resumeGame.setVisibility(View.GONE);
+	btnDisplay.setVisibility(View.VISIBLE);
+
+	if (timer)
+	{ 
+		mTextField.setVisibility(View.VISIBLE);
+		displayTimer(tRemaining);
+		/*time2=new  CountDownTimer(tRemaining, 1000){
+			public void onTick(long millisUntilFinished) {
+				
+		         mTextField.setText("Seconds remaining: " + millisUntilFinished / 1000);
+		         tRemaining=millisUntilFinished; 
+		     }
+			public void onFinish() {
+		    	 
+		 		MediaPlayer mPlayer = MediaPlayer.create(getBaseContext(), R.raw.time_up);
+				mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+				mPlayer.start();
+		    	
+		         mTextField.setText("Time's Up!");
+		         nwrong++;
+		         if(questionInRound < 10){
+		             nextQuestion(); 
+		             btnDisplay.setVisibility(View.VISIBLE);//***
+		         }
+		         else{
+		        	 score.setVisibility(View.VISIBLE);
+		         }
+		     }
+		  }.start();
+		*/
+		
+
 	}
+		
+	}
+	}
+	
 
