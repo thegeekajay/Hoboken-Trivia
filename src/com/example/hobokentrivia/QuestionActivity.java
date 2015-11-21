@@ -402,7 +402,7 @@ public void pause(View v)
 	btnDisplay.setVisibility(View.GONE);
 	resumeGame.setVisibility(View.VISIBLE);
 	IsResumed=false;
-	if (timer)
+	if (timer )
 		time.cancel();
 		
 	onPause();
@@ -422,7 +422,7 @@ public void resume(View v)
 	resumeGame.setVisibility(View.GONE);
 	btnDisplay.setVisibility(View.VISIBLE);
 
-	if (timer)
+	if (timer && statues !="result")
 	{ 
 		mTextField.setVisibility(View.VISIBLE);
 		displayTimer(tRemaining);
@@ -451,7 +451,13 @@ public void resume(View v)
 		  }.start();
 		*/
 		
+			
+		
 
+	}
+	if(statues=="result")
+	{mTextField.setVisibility(View.VISIBLE);
+		displayQS();
 	}
 		
 	}
