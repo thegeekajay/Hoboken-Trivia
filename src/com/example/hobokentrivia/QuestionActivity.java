@@ -170,59 +170,7 @@ import com.example.hobokentrivia.DBHelper;
 				displayTimer(timerSeconds);
 
 			}
-			
-//			if(timer){ //add timer
-//				 time = new CountDownTimer(21000, 1000) { //20 second count down
-//
-//
-//					public void onTick(long millisUntilFinished) {
-//				         mTextField.setText(" Seconds: " + millisUntilFinished / 1000);
-//				        // mTextField.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_lock_idle_alarm, 0, 0, 0);
-//				     }
-//
-//				     public void onFinish() { //time's up
-//				    	 //show correct answer
-//				    	 int id = 0;
-//				    	 for(int k = 0; k < 4; k++){
-//								if(As[k].isCorrect()){
-//									 id = As[k].getId();
-//								}
-//							}
-//							Button B = (Button) findViewById(id);
-//							B.setBackgroundColor(Color.GREEN);
-//							B.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.checkbox_on_background, 0, 0, 0);
-//				    	 
-//				    	//only enable sound if user did not stop music
-//				    	 if(music_btn.getTag() == "pause"){
-//						 		MediaPlayer mPlayer = MediaPlayer.create(getBaseContext(), R.raw.time_up_v2);
-//								mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//								mPlayer.setVolume(100, 100);
-//								mPlayer.start(); 
-//				    	 }
-//				    	
-//				         nwrong++;
-//				         if(questionInRound < 10){
-//				        	 //need a delay of 1 second before next question is brought up to show correct answer
-//				        	 
-//				        	 new CountDownTimer(1000, 1000) { //delay 1 second
-//
-//				        		   public void onTick(long millisUntilFinished) {
-//				        		   }
-//
-//				        		   public void onFinish() {
-//				        		       nextQuestion();
-//				        		   }
-//
-//				        		}.start();				             
-//				         }
-//				         else{
-//				        	 score.setVisibility(View.VISIBLE);
-//				         }
-//				     }
-//				  }.start();
-
-
-			
+					
 			//get next question from question hash map
 			Q = QsSet.get(index[Qnum - 1]);
 			
@@ -491,7 +439,7 @@ public void pause(View v)
 	btnDisplay.setVisibility(View.GONE);
 	resumeGame.setVisibility(View.VISIBLE);
 	IsResumed=false;
-	if (timer)
+	if (timer )
 		time.cancel();
 		
 	onPause();
@@ -511,7 +459,7 @@ public void resume(View v)
 	resumeGame.setVisibility(View.GONE);
 	btnDisplay.setVisibility(View.VISIBLE);
 
-	if (timer)
+	if (timer && statues !="result")
 	{ 
 		mTextField.setVisibility(View.VISIBLE);
 		displayTimer(tRemaining);
@@ -540,7 +488,13 @@ public void resume(View v)
 		  }.start();
 		*/
 		
+			
+		
 
+	}
+	if(statues=="result")
+	{mTextField.setVisibility(View.VISIBLE);
+		displayQS();
 	}
 		
 	}

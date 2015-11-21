@@ -22,7 +22,6 @@
            android:id="@+id/controlMusic"
            android:layout_width="40dp"
            android:layout_height="40dp"
-           android:layout_marginRight="50dp"
            android:layout_alignParentTop="true"
            android:layout_alignParentRight="true"
            android:onClick="onSetMusic" />

@@ -24,6 +24,7 @@
            android:id="@+id/controlMusic"
            android:layout_width="40dp"
            android:layout_height="40dp"
+           android:layout_marginRight="100dp"
            android:layout_alignParentTop="true"
            android:layout_alignParentRight="true"
            android:onClick="onSetMusic" />
@@ -157,26 +158,26 @@
      android:text="View Score"
      android:textColor="#FFFFFF" /> 
      
-      <Button
+     <Button
      android:id="@+id/button7"
     android:layout_width="80dp"
     android:layout_height="40dp"
     android:layout_alignParentTop="true"
-    android:layout_alignParentEnd="true"
     android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true"
      android:layout_marginBottom="10dp"
      android:background="@drawable/button" 
      android:onClick="pause"
      android:text="Pause"
      android:textColor="#FFFFFF" />
-    
-      <Button
+     
+     <Button
      android:id="@+id/button8"
      android:layout_width="80dp"
      android:layout_height="40dp"
      android:layout_alignParentTop="true"
-     android:layout_alignParentEnd="true"
      android:layout_alignParentRight="true"
+     android:layout_alignParentEnd="true"
      android:layout_marginBottom="10dp"
      android:background="@drawable/button" 
      android:onClick="resume"
