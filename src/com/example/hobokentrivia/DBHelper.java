@@ -29,7 +29,7 @@ import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper{
 	
-	private static final int DATABASE_VERSION = 19;
+	private static final int DATABASE_VERSION = 20;
 	// Database Name
 	private static final String DATABASE_NAME = "Hoboken_Trivia";
 	// tasks table name

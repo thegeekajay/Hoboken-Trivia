@@ -47,11 +47,11 @@ public class ScoreActivity extends Activity{
 	    	 //set music button as it was from previous screen
 	        music_btn = (ImageButton)findViewById(R.id.controlMusic);
 	        if(music_state.equals("pause")){
-				music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode);
+				music_btn.setBackgroundResource(R.drawable.mute);
 				music_btn.setTag("pause");
 	        }
 	        else if(music_state.equals("resume")){
-				music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode_off);
+				music_btn.setBackgroundResource(R.drawable.musicc);
 				music_btn.setTag("resume");
 	        }
 	    	
@@ -123,20 +123,21 @@ public class ScoreActivity extends Activity{
 			startActivity(i);
 
 		}
-	   
-		//set music on/off
+	   	    
+		//turn on/off music
 		public void onSetMusic(View v){
 			
 			if(music_btn.getTag() == "pause"){
-				music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode_off);
+				music_btn.setBackgroundResource(R.drawable.musicc);
 				stopService(new Intent(this, MusicService.class));
 				music_btn.setTag("resume");
 			}
 			else if(music_btn.getTag() == "resume"){
-				music_btn.setBackgroundResource(android.R.drawable.ic_lock_silent_mode);
+				music_btn.setBackgroundResource(R.drawable.mute);
 				startService(new Intent(this, MusicService.class));
 				music_btn.setTag("pause");
 			}
 		}
+	    
 	   
 }

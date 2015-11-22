@@ -168,7 +168,7 @@ correct: 3
 4- Lisa's Italian Deli
 29- The only restaurant in Hoboken that offers a French Bistro style menu. 
 correct: 1 
-1- Elysian Café
+1- Elysian Cafe
 2- bwe Cafe
 3- Maroon Cafe Inc.
 4- D's Soul Full Cafe

@@ -26,27 +26,6 @@
            android:layout_alignParentTop="true"
            android:layout_alignParentRight="true"
            android:onClick="onSetMusic" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="285dp"
-        android:layout_marginBottom="50dp"
-        android:layout_marginRight="100dp"
-        android:fontFamily="sans-serif-medium"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:textSize="30dp" />
-    
-                <TextView
-         android:id="@+id/textView3"
-         android:layout_width="150dp"
-         android:layout_height="wrap_content"
-         android:layout_centerHorizontal="true"
-         android:layout_alignBottom="@+id/textView2"
-         android:layout_marginBottom="100dp" />
     
 
         <Button
@@ -63,11 +42,31 @@
             android:id="@+id/button2"
             android:layout_width="40dp"
             android:layout_height="40dp"
- 			android:layout_below="@+id/textView3"
-            android:layout_marginTop="46dp"
+            android:layout_below="@+id/textView3"
+            android:layout_marginTop="75dp"
             android:layout_toRightOf="@+id/textView3"
             android:background="@drawable/exit"
             android:onClick="onExit"
             android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textView3"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="bottom"
+            android:text="score"
+            android:textColor="#FFFFFF"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
 </RelativeLayout>

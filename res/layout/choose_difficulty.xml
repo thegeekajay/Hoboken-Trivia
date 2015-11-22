@@ -2,21 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#44a1f2"
+    android:background="#A3DDE8"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.hobokentrivia.Choose_Difficulty" >
-        
-       <ImageButton
-           android:id="@+id/imageButton"
-           android:layout_width="40dp"
-           android:layout_height="40dp"
-           android:layout_alignParentTop="true"
-           android:background="@drawable/ornghome"
-           android:onClick="onHome" />
-       
+  
            
         <ImageButton
            android:id="@+id/controlMusic"
@@ -28,14 +20,13 @@
        
         <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+ 		android:layout_width="wrap_content"
+        android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
-        android:background="@drawable/ribbon"
+        android:background="@drawable/newbanner"
         android:gravity="center_vertical|center_horizontal"
-        android:text="Choose The Difficulty : "
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
@@ -52,7 +43,7 @@
        <Button
        android:id="@+id/button1"
        android:layout_width="150dp"
-       android:layout_height="wrap_content"
+       android:layout_height="60dp"
        android:layout_gravity="center_horizontal"
        android:background="@drawable/button"
        android:layout_below="@+id/LinearLayout1"
@@ -60,16 +51,15 @@
        android:gravity="center"
        android:text="No Time Limit"
        android:textColor="#FFFFFF"
+       android:fontFamily="sans-serif"
        android:textSize="15dp"
        android:textStyle="bold" 
-        android:onClick="onButtonClick"
-            
-        />
+        android:onClick="onButtonClick"  />
         
         <Button
         android:id="@+id/button2"
        android:layout_width="150dp"
-       android:layout_height="wrap_content"
+       android:layout_height="60dp"
        android:layout_gravity="center_horizontal"
        android:background="@drawable/button"
        android:checked="false"
@@ -79,6 +69,7 @@
        android:text="Time Limit"
        android:textColor="#FFFFFF"
        android:textSize="15dp"
+       android:fontFamily="sans-serif"
        android:textStyle="bold" 
        android:onClick="onButtonClick" />
 

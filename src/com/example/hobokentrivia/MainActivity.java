@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 		//set button to pause music
 		 music = (ImageButton)findViewById(R.id.controlMusic);
 		music.setTag("pause");
-		music.setBackgroundResource(android.R.drawable.ic_lock_silent_mode);
+		music.setBackgroundResource(R.drawable.mute);
 		
 		Button new_button = (Button)findViewById(R.id.New_Game);
 		
@@ -55,12 +55,12 @@ public class MainActivity extends Activity {
 	public void onSetMusic(View v){
 		
 		if(music.getTag() == "pause"){
-			music.setBackgroundResource(android.R.drawable.ic_lock_silent_mode_off);
+			music.setBackgroundResource(R.drawable.musicc);
 			stopService(new Intent(this, MusicService.class));
 			music.setTag("resume");
 		}
 		else if(music.getTag() == "resume"){
-			music.setBackgroundResource(android.R.drawable.ic_lock_silent_mode);
+			music.setBackgroundResource(R.drawable.mute);
 			startService(new Intent(this, MusicService.class));
 			music.setTag("pause");
 		}
