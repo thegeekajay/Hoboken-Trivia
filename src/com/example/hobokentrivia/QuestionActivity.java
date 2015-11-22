@@ -166,7 +166,7 @@ import com.example.hobokentrivia.DBHelper;
 			resetColor();
 			
 			if(timer){
-				long timerSeconds=11000;
+				long timerSeconds=21000;
 				displayTimer(timerSeconds);
 
 			}
@@ -195,7 +195,7 @@ import com.example.hobokentrivia.DBHelper;
 
 		private void displayTimer(long timerSeconds) {
 			
-			 time = new CountDownTimer(21000, 1000) { //20 second count down
+			 time = new CountDownTimer(timerSeconds, 1000) { //20 second count down
 
 
 					public void onTick(long millisUntilFinished) {
