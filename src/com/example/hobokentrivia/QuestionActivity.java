@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hobokentrivia.DBHelper;
@@ -39,6 +40,7 @@ import com.example.hobokentrivia.DBHelper;
 		private Button btnDisplay;
 		private TextView tv;
 		private TextView textView1; 
+		private ImageView imgView1;
 		Question Q=new Question();
 		Answer[] As=new Answer[4];
 		int ncorrect, nwrong;
@@ -80,7 +82,7 @@ import com.example.hobokentrivia.DBHelper;
 			}						
 			
 			db=new DBHelper(this, reader); //call to db
-
+           imgView1=(ImageView)findViewById(R.id.imageView1);
 			btnDisplay=(Button)findViewById(R.id.button1);
 			textView1=(TextView)findViewById(R.id.textView1);
 			tv=(TextView)findViewById(R.id.textView2);
@@ -430,6 +432,7 @@ import com.example.hobokentrivia.DBHelper;
 
 public void pause(View v)
 {
+	imgView1.setVisibility(View.INVISIBLE);
 	B1.setVisibility(View.GONE);
 	B2.setVisibility(View.GONE);
 	B3.setVisibility(View.GONE);
@@ -455,7 +458,7 @@ public void resume(View v)
 	B3.setVisibility(View.VISIBLE);
 	B4.setVisibility(View.VISIBLE);
 	tv.setVisibility(View.VISIBLE);
-	
+	imgView1.setVisibility(View.VISIBLE);
 	textView1.setVisibility(View.VISIBLE);
 	pauseGame.setVisibility(View.VISIBLE);
 	resumeGame.setVisibility(View.GONE);
