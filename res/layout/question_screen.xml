@@ -121,6 +121,7 @@
       android:layout_below="@+id/imageButton"
       android:layout_centerHorizontal="true"
       android:text="Question 1"
+      
       android:textColor="#009688"
       android:textSize="30dp" />
 
@@ -130,6 +131,7 @@
       android:layout_height="70dp"
       android:layout_below="@+id/textView1"
       android:layout_centerHorizontal="true"
+        android:textColor="#ff444444"
       android:gravity="center"
       android:textSize="15sp" />
 
