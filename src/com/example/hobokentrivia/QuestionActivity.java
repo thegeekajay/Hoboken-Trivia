@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hobokentrivia.DBHelper;
@@ -43,6 +44,7 @@ import com.example.hobokentrivia.DBHelper;
 		Answer[] As=new Answer[4];
 		int ncorrect, nwrong;
 		private int questionInRound=0; 
+		private ImageView imgView1;
 		private boolean timer;
 	    private TextView mTextField;
 		private int[] index;
@@ -83,6 +85,7 @@ import com.example.hobokentrivia.DBHelper;
 
 			btnDisplay=(Button)findViewById(R.id.button1);
 			textView1=(TextView)findViewById(R.id.textView1);
+		    imgView1=(ImageView)findViewById(R.id.imageView1);
 			tv=(TextView)findViewById(R.id.textView2);
 			B1=(Button)findViewById(R.id.button2);
 			B2=(Button)findViewById(R.id.button3);
@@ -200,6 +203,7 @@ import com.example.hobokentrivia.DBHelper;
 
 					public void onTick(long millisUntilFinished) {
 				         mTextField.setText(" Seconds: " + millisUntilFinished / 1000);
+				       //  mTextField.setCompoundDrawablesWithIntrinsicBounds(R.drawable.clock, 0, 0, 0);
 				         tRemaining=millisUntilFinished; 
 				     }
 
@@ -430,6 +434,7 @@ import com.example.hobokentrivia.DBHelper;
 
 public void pause(View v)
 {
+	imgView1.setVisibility(View.INVISIBLE);
 	B1.setVisibility(View.GONE);
 	B2.setVisibility(View.GONE);
 	B3.setVisibility(View.GONE);
@@ -455,7 +460,7 @@ public void resume(View v)
 	B3.setVisibility(View.VISIBLE);
 	B4.setVisibility(View.VISIBLE);
 	tv.setVisibility(View.VISIBLE);
-	
+	imgView1.setVisibility(View.VISIBLE);
 	textView1.setVisibility(View.VISIBLE);
 	pauseGame.setVisibility(View.VISIBLE);
 	resumeGame.setVisibility(View.GONE);

@@ -64,13 +64,13 @@ correct: 1
 2- 1600
 3- 1702
 4- 1800
-12- Hoboken was purchased by Stevens Family. What was the price?
+12- Hoboken was purchased by Stevens Family for what price?
 correct: 1
 1- 18,360 pounds      
 2- 20,000 pounds
 3- 23,000 pounds     
 4- 18,633 pounds
-13- The Erie-Lackawanna Terminal was built to replace the original terminal, which was destroyed two years earlier by fire. In which year was it built.
+13- In what year was the Erie Lackawanna Terminal built?
 correct: 1
 1- 1907
 2- 1809
@@ -82,37 +82,37 @@ correct: 4
 2- Hispanics
 3- Portuguese
 4- German
-15- By 1920, who outnumbered Germans among the foreign born made the city of Hoboken theirs?
+15- By 1920, who outnumbered Germans among the foreign born in the city of Hoboken?
 correct: 1
 1- Italians
 2- Hispanics
 3- Portuguese
 4- Swedish
-16- Edgar Allen Poe's "Mystery of Marie Roget" was based on a Hoboken Murder of 1841. Who was the victim? 
+16- Edgar Allen Poe's "Mystery of Marie Roget" was based on the Hoboken Murder of 1841. Who was the victim? 
 correct: 2
 1- The Black Dahlia
 2- Mary Rogers
 3- The Boy in the Box
 4- Julia Wallace
-17- Which Academy Award winning film  was filmed entirely in Hoboken? 
+17- Which Academy Award winning film was filmed entirely in Hoboken? 
 correct: 3
 1- The Phone Call
 2- Seventh Heaven
 3- On the Waterfront 
 4- Wings
-18- Which Hoboken resident was the main character in a book titled "The Witch of Wall Street."? 
+18- Which Hoboken resident was the main character in a book titled "The Witch of Wall Street"? 
 correct: 1
 1- Hetty Green 
 2- Richard Barone
 3- Bob Borden
 4- Christina Fonatelli
-19- Hoboken is also the location of a first recorded, now popular game which was played in the Elysian Fields in 1846. Which game? 
+19- Hoboken is the location of what first recorded, now popular game played in the Elysian Fields in 1846? 
 correct: 3
 1- Lacrosse 
 2- American Football
 3- Baseball
 4- Basketball
-20- The first American yacht club was built in Hoboken. Which year was it built in?
+20- The first American yacht club was built in Hoboken. What year was it built?
 correct: 1
 1- 1844
 2- 1900
@@ -136,7 +136,7 @@ correct: 1
 2- River Street
 3- Newark Street
 4- Madison Street
-24- The best place to eat crepes in Hoboken?
+24- What is the best place to eat crepes in Hoboken?
 correct: 1
 1- Crepe Guru
 2- Crepes and Things
@@ -148,7 +148,7 @@ correct: 2
 2- Hoboken menus
 3- Hoboken eating
 4- None of the above
-26- A famous bakery of Hoboken that was a place for a reality show called Cake boss is?
+26- A famous bakery of Hoboken that was a place for a reality show called Cake Boss is?
 correct: 2
 1- Sweet
 2- Carlo's Bakery
@@ -160,7 +160,7 @@ correct: 1
 2- Vito's
 3- Fiore's Deli
 4- Luca Brasi's Deli
-28- You can eat an award winning mozzarella cheese in Hoboken at_________.
+28- You can eat award winning mozzarella cheese in Hoboken at_________.
 correct: 3
 1- Vito's
 2- Fran's Deli
@@ -172,7 +172,7 @@ correct: 1
 2- bwe Cafe
 3- Maroon Cafe Inc.
 4- D's Soul Full Cafe
-30- If you want to try best Asian Cuisine in Hoboken, you can go to :
+30- If you want to try the best Asian Cuisine in Hoboken, you can go to :
 correct: 3
 1- No. 1 Chinese
 2- Precious Chinese Cuisine
@@ -184,7 +184,7 @@ correct: 3
 2- Amanda's Restaurant
 3- Skewed Cow
 4- Hoboken Bar & Grill
-32- To taste the Austin Barbeque, you go to________. 
+32- To taste Austin Barbeque, you can go to________. 
 correct: 1
 1- House of Que
 2- Smokin' Barell
@@ -208,7 +208,7 @@ correct: 3
 2- Doctor
 3- Chief Rabbi
 4- Politician
-36- Name the steamship invented by Robert L Stevens, which was the first steamship to navigate the ocean successfully when she traveled from New York City to the Delaware River in 1809.
+36- Name the steamship invented by Robert L Stevens, which was the first steamship to navigate the ocean successfully from New York City to the Delaware River in 1809.
 correct: 4
 1- Phoenix
 2- S.S. Drip
@@ -238,7 +238,7 @@ correct: 4
 2- The Snarkout Boys and the Avocado of Death
 3- Fat Men from Space
 4- All of the above
-41- Hoboken resident and journalist, Natalie Morales-Rhodes works which news channel?
+41- Hoboken resident and journalist, Natalie Morales-Rhodes works for which news channel?
 correct: 2
 1- FOX News
 2- NBC News
@@ -250,49 +250,49 @@ correct: 3
 2- San Francisco 49ers
 3- New York Giants
 4- Denver Broncos
-43- Which bar of Hoboken is it's first wine bar?
+43- Which bar is Hoboken's first wine bar?
 correct: 4
 1- Cooper's Union
 2- Bin 14
 3- Onieal's 
 4- Madison Bar and Grill 
-44- Mulligan's Pub claims itself to be the first ________ . 
+44- Mulligan's Pub claims to be the first ________ . 
 correct: 3
 1- Bar of Hoboken
 2- Beer Bar
 3- Football bar
 4- Quiet bar
-45- __________ bar has vintage arcade games, a pool table, darts, rotating art shows. 
+45- __________ bar has vintage arcade games, a pool table, darts, and rotating art shows. 
 correct: 1
 1- Louise and Jerry's Tavern 
 2- The Teak on the Hudson
 3- Mulligan's Pub
 4- Northern Soul
-46- Which pub does Stevens Institute of Technology conduct it's 'Mix and Mingle' event regularly? 
+46- In which pub does Stevens Institute of Technology conduct it's 'Mix and Mingle' event regularly? 
 correct: 4
 1- Mulligan's Pub
 2- Cooper's Union
 3- Bin 14
 4- Teak on the Hudson
-47- Name the road in Hoboken on the coast of the river Hudson? 
+47- Name the road in Hoboken on the coast of the Hudson river? 
 correct: 1
 1- Frank Sinatra Drive
 2- Washington Street
 3- River Street
 4- Madison Street
-48- The first brewery of USA was located in Hoboken. Name the location of it in the city. 
+48- The first brewery of the USA was located in Hoboken on what street? 
 correct: 1
 1- Frank Sinatra Rd
 2- Castle Point
 3- Washington Street
 4- Willow Street 
-49- _________ is an indispensable device now, was invented in Hoboken 
+49- What indispensable device was invented in Hoboken?
 correct: 3
 1- Button
 2- Zipper
 3- Locks
 4- Hooks
-50- Number of undergraduate programs available at Stevens are? 
+50- The number of undergraduate programs available at Stevens are? 
 correct: 4
 1- 40
 2- 33

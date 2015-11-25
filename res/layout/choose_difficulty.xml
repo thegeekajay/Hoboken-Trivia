@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp"
-        android:background="@drawable/newbanner"
+        android:background="@drawable/diffbanner"
         android:gravity="center_vertical|center_horizontal"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FFFFFF"
