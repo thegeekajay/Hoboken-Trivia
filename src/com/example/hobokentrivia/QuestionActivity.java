@@ -40,6 +40,7 @@ import com.example.hobokentrivia.DBHelper;
 		private Button btnDisplay;
 		private TextView tv;
 		private TextView textView1; 
+		private ImageView imgView1;
 		Question Q=new Question();
 		Answer[] As=new Answer[4];
 		int ncorrect, nwrong;
@@ -82,7 +83,7 @@ import com.example.hobokentrivia.DBHelper;
 			}						
 			
 			db=new DBHelper(this, reader); //call to db
-
+           imgView1=(ImageView)findViewById(R.id.imageView1);
 			btnDisplay=(Button)findViewById(R.id.button1);
 			textView1=(TextView)findViewById(R.id.textView1);
 		    imgView1=(ImageView)findViewById(R.id.imageView1);

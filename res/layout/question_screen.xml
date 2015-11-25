@@ -144,13 +144,11 @@
      android:textColor="#FFFFFF" />
  
  </LinearLayout>
-
-
-
- 	  <Button
+ 
+<Button
      android:id="@+id/button1"
      android:layout_width="120dp"
-      android:layout_height="60dp"
+     android:layout_height="60dp"
      android:layout_alignParentBottom="true"
      android:layout_centerHorizontal="true"
      android:layout_marginBottom="30dp"
@@ -159,6 +157,7 @@
      android:text="Next Question"
      android:textSize="15sp"
      android:textColor="#FFFFFF" />
+  
   <Button
      android:id="@+id/button6"
      android:layout_width="120dp"
