@@ -438,7 +438,7 @@ public void pause(View v)
 	B3.setVisibility(View.GONE);
 	B4.setVisibility(View.GONE);
 	tv.setVisibility(View.GONE);
-	mTextField.setVisibility(View.GONE);
+//	mTextField.setVisibility(View.GONE);
 	textView1.setVisibility(View.GONE);
 	pauseGame.setVisibility(View.GONE);
 	btnDisplay.setVisibility(View.GONE);
