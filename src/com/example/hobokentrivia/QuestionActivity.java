@@ -40,7 +40,6 @@ import com.example.hobokentrivia.DBHelper;
 		private Button btnDisplay;
 		private TextView tv;
 		private TextView textView1; 
-		private ImageView imgView1;
 		Question Q=new Question();
 		Answer[] As=new Answer[4];
 		int ncorrect, nwrong;
