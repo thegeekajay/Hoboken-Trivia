@@ -143,9 +143,9 @@
      android:text="Choice1"
      android:textColor="#FFFFFF" />
  
- </LinearLayout>
- 
-<Button
+ </LinearLayout>         
+
+ 	  <Button
      android:id="@+id/button1"
      android:layout_width="120dp"
      android:layout_height="60dp"
@@ -197,5 +197,31 @@
      android:text="Resume"
      android:textColor="#FFFFFF" />
 
+     <Button
+         android:id="@+id/fifty_fifty"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/button1"
+         android:layout_alignBottom="@+id/button1"
+         android:layout_toRightOf="@+id/textView1"
+         android:onClick="fiftyFifty"
+         android:text="fifty-fifty" />
+
+     <ImageView
+         android:id="@+id/coinmeter"
+         android:layout_width="100dp"
+         android:layout_height="60dp"
+         android:layout_alignLeft="@+id/LinearLayout1"
+         android:layout_alignParentBottom="true"
+         android:layout_alignTop="@+id/coinscounter"
+         android:src="@drawable/coinsmeter" />
+
+     <TextView
+         android:id="@+id/coinscounter"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/timer"
+         android:layout_alignParentBottom="true"
+         android:layout_marginBottom="18dp" />
 
 </RelativeLayout>

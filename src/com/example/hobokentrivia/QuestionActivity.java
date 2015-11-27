@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hobokentrivia.DBHelper;
 
@@ -65,6 +66,12 @@ import com.example.hobokentrivia.DBHelper;
 		private ImageButton music_btn;
 	    long tRemaining; 
 	    boolean IsResumed=false; 
+	    public Button buttonContent[] = new Button[4];
+	    int coinsCount = 3;
+	    private TextView coinsCounter;
+	    Button fifty;
+	    int greyColor = Color.GRAY;
+		
 
 		@Override
 		protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +89,7 @@ import com.example.hobokentrivia.DBHelper;
 			}						
 			
 			db=new DBHelper(this, reader); //call to db
-           imgView1=(ImageView)findViewById(R.id.imageView1);
+            imgView1=(ImageView)findViewById(R.id.imageView1);
 			btnDisplay=(Button)findViewById(R.id.button1);
 			textView1=(TextView)findViewById(R.id.textView1);
 		    imgView1=(ImageView)findViewById(R.id.imageView1);
@@ -98,9 +105,16 @@ import com.example.hobokentrivia.DBHelper;
 			mTextField=(TextView)findViewById(R.id.timer);
 			score.setVisibility(View.GONE);
 			btnDisplay.setVisibility(View.INVISIBLE);
+			coinsCounter=(TextView)findViewById(R.id.coinscounter);
+			fifty=(Button)findViewById(R.id.fifty_fifty);
 			
 			ncorrect=0;
 			nwrong=0;
+			
+			coinsCounter.setText(Integer.toString(coinsCount));
+			
+			if(coinsCount < 3)
+			fifty.setEnabled(false);
 			
 			Bundle extras = getIntent().getExtras();
 			 if (extras != null) {
@@ -134,6 +148,8 @@ import com.example.hobokentrivia.DBHelper;
 			case "No Time Limit":
 				timer = false;
 				mTextField.setVisibility(TextView.INVISIBLE);
+				pauseGame.setVisibility(View.GONE);
+				resumeGame.setVisibility(View.GONE);
 				break;
 			case "Time Limit":
 				timer = true;
@@ -143,6 +159,33 @@ import com.example.hobokentrivia.DBHelper;
 			// Displaying First Round question
 			
 					firstQuestion();
+		}
+		
+		//This method eliminates two wrong answers
+		public void fiftyFifty(View view)
+		{ 
+			List<Button> falseAns = new ArrayList<Button>();
+			coinsCount = coinsCount - 3;		
+			coinsCounter.setText(Integer.toString(coinsCount));
+			
+			if(coinsCount >= 3)
+				 fifty.setEnabled(true);
+			else
+				fifty.setEnabled(false);
+			
+			for (int i = 0; i < buttonContent.length; i++) 
+			{	
+				if (As[i].isCorrect() == false) 
+				{
+					falseAns.add(buttonContent[i]);
+				}	
+			}
+
+			for (int j = 0; j < falseAns.size()-1; j++) 
+			{
+				falseAns.get(j).setBackgroundColor(greyColor);
+				falseAns.get(j).setEnabled(false);
+			}	
 		}
 		
 		private void firstQuestion(){ //method just for first question
@@ -193,6 +236,11 @@ import com.example.hobokentrivia.DBHelper;
 			B4.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
 			B4.setText(As[3].getAnswer());
 			questionInRound++;
+			
+			buttonContent[0] = B1;
+			buttonContent[1] = B2;
+			buttonContent[2] = B3;
+			buttonContent[3] = B4;
 			
 		}
 
@@ -314,8 +362,11 @@ import com.example.hobokentrivia.DBHelper;
 
 						view.setBackgroundColor(gcolor);
 						result_text="Correct!";
+						coinsCount++;
+						coinsCounter.setText(Integer.toString(coinsCount));
 
 					}
+
 					else 	{ //wrong answer
 						
 				    	//only enable sound if user did not stop music
@@ -329,6 +380,15 @@ import com.example.hobokentrivia.DBHelper;
 
 						view.setBackgroundColor(rcolor);
 						result_text = "Sorry, that is incorrect";
+						
+						
+						if (coinsCount <= 0) 
+							coinsCounter.setText(Integer.toString(coinsCount));
+						
+						else{
+							coinsCount--;
+							coinsCounter.setText(Integer.toString(coinsCount));
+						}
 						
 						//draw 'X' on wrong answer
 						Button btn = (Button) findViewById(selectedId);
@@ -346,6 +406,11 @@ import com.example.hobokentrivia.DBHelper;
 						B.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.checkbox_on_background, 0, 0, 0);
 
 					}
+					
+					if(coinsCount >= 3)
+						 fifty.setEnabled(true);
+					else
+						fifty.setEnabled(false);
 				}
 			}
 		}
@@ -440,7 +505,7 @@ public void pause(View v)
 	B3.setVisibility(View.GONE);
 	B4.setVisibility(View.GONE);
 	tv.setVisibility(View.GONE);
-	mTextField.setVisibility(View.GONE);
+//	mTextField.setVisibility(View.GONE);
 	textView1.setVisibility(View.GONE);
 	pauseGame.setVisibility(View.GONE);
 	btnDisplay.setVisibility(View.GONE);
