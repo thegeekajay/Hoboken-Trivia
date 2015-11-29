@@ -333,6 +333,7 @@ import com.example.hobokentrivia.DBHelper;
 			Intent i = new Intent(this, Choose_Difficulty.class);
 			i.putExtra("music", music_btn.getTag().toString());
 			startActivity(i);
+			finish();
 
 		}
 		
