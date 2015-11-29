@@ -138,6 +138,38 @@ public class ScoreActivity extends Activity{
 				music_btn.setTag("pause");
 			}
 		}
+		public void exit(View v){
+			
+			AlertDialog.Builder exitAlert = new AlertDialog.Builder(ScoreActivity.this);
+			exitAlert.setMessage("Are you sure you want to exit?");
+			
+			
+			exitAlert.setPositiveButton("Yes", new OnClickListener() {
+		        @Override
+		        public void onClick(DialogInterface dialog, int which) {
+		             finish();                  
+		        }
+		    }); 
+
+			exitAlert.setNegativeButton("No", new OnClickListener() {
+				
+		        @Override
+		        public void onClick(DialogInterface dialog, int which) {
+		        	dialog.cancel(); 
+		        	
+		        }
+		    });
+			
+			
+			exitAlert.create();
+			exitAlert.show();
+			
+			
+
+			
+			
+		}    
+	   
 	    
 	   
 }
