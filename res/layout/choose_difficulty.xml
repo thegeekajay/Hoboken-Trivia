@@ -74,6 +74,18 @@
        android:onClick="onButtonClick" />
 
 </LinearLayout>
+ <Button
+           android:id="@+id/button3"
+           android:layout_width="80dp"
+           android:layout_height="40dp"
+           android:layout_alignParentTop="true"
+           android:layout_alignParentRight="true"
+           android:background="@drawable/button"
+           android:fontFamily="sans-serif"
+           android:onClick="exit"
+           android:text="Exit"
+           android:textColor="#FFFFFF"
+           android:textSize="15dp" />
 </RelativeLayout>
 
 
