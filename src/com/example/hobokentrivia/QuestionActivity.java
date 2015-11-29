@@ -11,6 +11,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -40,7 +43,8 @@ import com.example.hobokentrivia.DBHelper;
 		private Button resumeGame;
 		private Button btnDisplay;
 		private TextView tv;
-		private TextView textView1; 
+		private TextView textView1;
+		private Button exitBtn;
 		Question Q=new Question();
 		Answer[] As=new Answer[4];
 		int ncorrect, nwrong;
@@ -107,6 +111,8 @@ import com.example.hobokentrivia.DBHelper;
 			btnDisplay.setVisibility(View.INVISIBLE);
 			coinsCounter=(TextView)findViewById(R.id.coinscounter);
 			fifty=(Button)findViewById(R.id.fifty_fifty);
+			exitBtn=(Button)findViewById(R.id.button9);
+			
 			
 			ncorrect=0;
 			nwrong=0;
@@ -570,6 +576,46 @@ public void resume(View v)
 	}
 		
 	}
+public void exit(View v){
+	
+	AlertDialog.Builder exitAlert = new AlertDialog.Builder(QuestionActivity.this);
+	exitAlert.setMessage("Are you sure you want to exit?");
+	if (timer )
+		time.cancel();
+	
+	exitAlert.setPositiveButton("Yes", new OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+             finish();                  
+        }
+    }); 
+
+	exitAlert.setNegativeButton("No", new OnClickListener() {
+		
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+        	dialog.cancel(); 
+        	if (timer && statues !="result")
+        	{ 
+        		mTextField.setVisibility(View.VISIBLE);
+        		displayTimer(tRemaining);
+        	}
+        	if(statues=="result")
+        	{mTextField.setVisibility(View.VISIBLE);
+        		displayQS();
+        	}
+        }
+    });
+	
+	
+	exitAlert.create();
+	exitAlert.show();
+	
+	
+
+	
+	
+}
 	}
 	
 
