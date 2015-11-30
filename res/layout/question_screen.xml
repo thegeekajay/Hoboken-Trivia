@@ -111,7 +111,6 @@
       android:textColor="#ff444444"
       android:gravity="center"
       android:textSize="15sp" />
->>>>>>> Stashed changes
 
  	  <Button
      android:id="@+id/button1"
@@ -369,6 +368,18 @@
           android:fontFamily="sans-serif"
           android:text="This show the number of coins you own"
           android:textColor="#fdfbfb" />
->>>>>>> Stashed changes
+        
+        <Button
+        android:id="@+id/button10"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_custom"
+        android:textSize="15sp"
+        android:text="Rate"
+        android:textColor="#FFFFFF"
+        android:layout_alignBottom="@+id/fifty_fifty"
+        android:layout_toLeftOf="@+id/coinmeter"
+        android:layout_toRightOf="@+id/imageButton"
+        android:layout_toEndOf="@+id/imageButton" />
 
 </RelativeLayout>
