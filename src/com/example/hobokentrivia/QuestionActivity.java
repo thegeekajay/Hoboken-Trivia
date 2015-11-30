@@ -39,6 +39,7 @@ import com.example.hobokentrivia.DBHelper;
 		private Button score;
 		private Button pauseGame;
 		private Button resumeGame;
+		private Button rateQuestion;
 		private Button btnDisplay;
 		private TextView tv;
 		private TextView textView1;
@@ -104,6 +105,11 @@ import com.example.hobokentrivia.DBHelper;
 			pauseGame=(Button)findViewById(R.id.button7);
 			resumeGame=(Button)findViewById(R.id.button8);
 			resumeGame.setVisibility(View.GONE);
+			
+			rateQuestion=(Button)findViewById(R.id.button10);
+			rateQuestion.setVisibility(View.GONE);
+			
+			
 			mTextField=(TextView)findViewById(R.id.timer);
 			score.setVisibility(View.GONE);
 			btnDisplay.setVisibility(View.INVISIBLE);
@@ -163,6 +169,34 @@ import com.example.hobokentrivia.DBHelper;
 			// Displaying First Round question
 			
 					firstQuestion();
+					
+			rateQuestion.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
+					alertDialogBuilder.setTitle("How was the question ?");
+					alertDialogBuilder
+							.setCancelable(false)
+							.setPositiveButton("Fun", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									db.questionRating(ID,Q.getId(),"FUN");
+									rateQuestion.setVisibility(View.GONE);
+								}
+							})
+							.setNegativeButton("Boring", new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									db.questionRating(ID,Q.getId(),"BORING");
+									rateQuestion.setVisibility(View.GONE);
+
+								}
+							});
+
+					AlertDialog alertDialog = alertDialogBuilder.create();
+
+					alertDialog.show();
+				}
+
+
+			});
 		}
 		
 		//This method eliminates two wrong answers
