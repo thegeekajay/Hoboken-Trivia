@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="42dp"
-        android:background="@drawable/button"
+        android:background="@drawable/button_custom"
         android:fontFamily="sans-serif"
         android:text="@string/New_Game"
         android:textColor="#FFFFFF"

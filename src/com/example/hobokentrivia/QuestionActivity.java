@@ -20,13 +20,11 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.hobokentrivia.DBHelper;
 
@@ -194,6 +192,49 @@ import com.example.hobokentrivia.DBHelper;
 			}	
 		}
 		
+		//This method displays the coach marks that explains how the game and components of the screen works
+		public void coachMarks(View transActivity)
+		{
+			transActivity = (TextView) findViewById(R.id.translucent);
+			transActivity.setVisibility(View.GONE);	
+			
+			TextView eliminate_wrong_answers = (TextView) findViewById(R.id.eliminate_wrong_answers);
+			ImageView arrowright = (ImageView) findViewById(R.id.arrowright);
+			TextView resume_play = (TextView) findViewById(R.id.resume_play);
+			TextView numbofcoins = (TextView) findViewById(R.id.numbofcoins);
+			TextView backhome = (TextView) findViewById(R.id.backhome);
+			TextView mute_text = (TextView) findViewById(R.id.mute_text);
+			TextView quickTutorial = (TextView) findViewById(R.id.quickTutorial);
+			TextView tap_to_dismiss = (TextView) findViewById(R.id.tap_to_dismiss);
+			ImageView arrowup1 = (ImageView) findViewById(R.id.arrowup1);
+			ImageView straightarrow = (ImageView) findViewById(R.id.straightarrow);
+			ImageView arrow = (ImageView) findViewById(R.id.arrow);
+			ImageView line = (ImageView) findViewById(R.id.line);
+			ImageView mute_arrow = (ImageView) findViewById(R.id.mute_arrow);
+			Button temp_play_btn = (Button) findViewById(R.id.temp_play_btn);
+			
+			eliminate_wrong_answers.setVisibility(View.GONE);
+			arrowright.setVisibility(View.GONE);
+			resume_play.setVisibility(View.GONE);
+			numbofcoins.setVisibility(View.GONE);
+			backhome.setVisibility(View.GONE);
+			arrowup1.setVisibility(View.GONE);
+			straightarrow.setVisibility(View.GONE);
+			arrow.setVisibility(View.GONE);
+			temp_play_btn.setVisibility(View.GONE);
+			mute_arrow.setVisibility(View.GONE);
+			mute_text.setVisibility(View.GONE);
+			line.setVisibility(View.GONE);
+			quickTutorial.setVisibility(View.GONE);
+			tap_to_dismiss.setVisibility(View.GONE);
+			
+			if(timer)
+			{
+				long timerSeconds=21000;
+				displayTimer(timerSeconds);
+			}
+		}
+		
 		private void firstQuestion(){ //method just for first question
 			QsSet = db.getQuestionSet(); //get random set of 10 questions
 			index = new int[QsSet.size()];
@@ -217,11 +258,11 @@ import com.example.hobokentrivia.DBHelper;
 			enableAnswerButtons();
 			resetColor();
 			
-			if(timer){
-				long timerSeconds=21000;
-				displayTimer(timerSeconds);
-
-			}
+//			if(timer){
+//				long timerSeconds=21000;
+//				displayTimer(timerSeconds);
+//
+//			}
 					
 			//get next question from question hash map
 			Q = QsSet.get(index[Qnum - 1]);
