@@ -4,85 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< Updated upstream
-    android:background="#A3DDE8"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.hobokentrivia.QuestionActivity" > 
-    
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentTop="true"
-        android:background="@drawable/ornghome"
-        android:onClick="onHome" />
-    
-        
-        <ImageButton
-           android:id="@+id/controlMusic"
-           android:layout_width="40dp"
-           android:layout_height="40dp"
-           android:layout_marginRight="100dp"
-           android:layout_alignParentTop="true"
-           android:layout_alignParentRight="true"
-           android:onClick="onSetMusic" />
-          
-        <TextView
-		android:id="@+id/timer"
-		android:text="Time Remaining: "
-		android:textSize="20dp"
-		android:textColor="#616161"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_alignParentTop="true"
-		android:layout_marginRight="50dp"
-		android:layout_toRightOf="@+id/imageButton" />
-        
-         
-                       
-  <ImageView
-         android:id="@+id/imageView1"
-         android:layout_width="150dp"
-         android:layout_height="140dp"
-         android:layout_alignLeft="@+id/imageButton"
-         android:layout_alignRight="@+id/LinearLayout1"
-         android:layout_below="@+id/textView1"
-         android:src="@drawable/questionholder" /> 
-
-  <TextView
-      android:id="@+id/textView1"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/imageButton"
-      android:layout_centerHorizontal="true"
-      android:text="Question 1"
-	  android:textColor="#009688"
-      android:textSize="30dp" />
-
-  <TextView
-      android:id="@+id/textView2"
-      android:layout_width="250dp"
-      android:layout_height="70dp"
-      android:layout_below="@+id/textView1"
-      android:layout_centerHorizontal="true"
-      android:layout_marginTop="20dp"
-      android:layout_centerVertical="true"
-      android:gravity="center"
-      android:textColor="#616161"
-      android:textSize="15sp" />
-        
- 
-=======
     android:background="#44a1f2"
     tools:context="com.example.hobokentrivia.QuestionActivity" > 
     <!-- android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" -->
->>>>>>> Stashed changes
+
                 
      <LinearLayout
          android:id="@+id/LinearLayout1"
@@ -151,9 +79,6 @@
      android:text="Choice1"
      android:textColor="#FFFFFF" />
  
-<<<<<<< Updated upstream
- </LinearLayout>         
-=======
  </LinearLayout>
            
   <ImageView
@@ -204,11 +129,7 @@
   <Button
      android:id="@+id/button6"
      android:layout_width="120dp"
-<<<<<<< Updated upstream
-      android:layout_height="60dp"
-=======
      android:layout_height="50dp"
->>>>>>> Stashed changes
      android:layout_alignParentBottom="true"
      android:layout_centerHorizontal="true"
      android:layout_marginBottom="30dp"
@@ -288,12 +209,10 @@
 
      <TextView
          android:id="@+id/coinscounter"
-<<<<<<< Updated upstream
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignLeft="@+id/timer"
-         android:layout_alignParentBottom="true"
-         android:layout_marginBottom="18dp" />
+		 android:layout_width="20dp"
+         android:layout_height="20dp"
+         android:layout_marginTop="57dp"
+         android:layout_centerHorizontal="true"/>
          
            <Button
          android:id="@+id/button9"
@@ -305,11 +224,7 @@
          android:textColor="#FFFFFF" 
          android:onClick="exit"
          android:text="Exit" />
-=======
-         android:layout_width="20dp"
-         android:layout_height="20dp"
-         android:layout_marginTop="57dp"
-         android:layout_centerHorizontal="true"/>
+         
 
      <Button
      	android:id="@+id/temp_play_btn"
@@ -329,7 +244,7 @@
          android:layout_height="match_parent"
          android:background="#aa000000"
          android:clickable="true"
-         android:onClick="translucentActivity"
+         android:onClick="coachMarks"
          android:textColor="#CCFF0000" />
 
      <ImageView
