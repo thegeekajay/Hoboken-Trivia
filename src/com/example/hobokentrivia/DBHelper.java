@@ -35,6 +35,7 @@ public class DBHelper extends SQLiteOpenHelper{
 	// tasks table name
 	private static final String TABLE_QUESTION = "Question";
 	private static final String TABLE_TRACK_USER = "Track_User";
+	private static final String TABLE_QUESTION_RATING = "Question_Rating";
 	// tasks Table Columns names
 	private static final String KEY_ID = "ID";
 	private static final String KEY_QUESTION = "QUESTION";
@@ -50,6 +51,9 @@ public class DBHelper extends SQLiteOpenHelper{
 	private static final String KEY_TIME_IN = "TIME_IN";
 	private static final String KEY_TIME_OUT = "TIME_OUT";
 	private static final String KEY_TOTAL_TIME = "TOTAL_TIME";
+	private static final String KEY_RATING = "RATING";
+
+
 	private SQLiteDatabase dbase;
 	private Scanner file;
 	private String Line;
@@ -85,8 +89,14 @@ public class DBHelper extends SQLiteOpenHelper{
 				+ " INTEGER, " + KEY_COINS + " INTEGER, " + KEY_GAME_NUM + " INTEGER, " 
 				+ KEY_TIME_IN +" DATETIME, "+KEY_TIME_OUT + " DATETIME, " + KEY_TOTAL_TIME + " TIME, " + 
 				"UNIQUE (" + KEY_USERID + ", " + KEY_GAME_NUM + "))";
+				
+		String Question_rating = "CREATE TABLE IF NOT EXIST" + TABLE_QUESTION_RATING +"("
+							+ KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_USERID + " INTEGER, "
+							+ KEY_QUESTIONID + " INTEGER, " + KEY_RATING + " VARCHAR )";
+
 		dbase.execSQL(questions);
 		dbase.execSQL(user);
+		dbase.execSQL(Question_rating);
 		try {
 			loadQuestions(reader);
 			//startTracking();
@@ -96,6 +106,19 @@ public class DBHelper extends SQLiteOpenHelper{
 		}
 
 	}
+	
+	
+	public void questionRating(int userId, int questionId,String rating){
+		dbase = this.getWritableDatabase();
+		ContentValues values = new ContentValues();
+
+		values.put(KEY_USERID, userId);
+		values.put(KEY_QUESTIONID, questionId);
+		values.put(KEY_RATING, rating);
+
+		dbase.insert(TABLE_QUESTION_RATING, null, values);
+	}
+	
 	
 	public void addNewGame(int id, int gameid){
 		dbase = this.getWritableDatabase();
