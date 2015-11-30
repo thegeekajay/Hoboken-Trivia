@@ -1,6 +1,7 @@
 package com.example.hobokentrivia;
 	
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
@@ -8,7 +9,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.nfc.Tag;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
